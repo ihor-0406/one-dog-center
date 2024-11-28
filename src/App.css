@@ -1,0 +1,18 @@
+body{
+  background-image: url(..//src/image/pexels.jpg);
+  width: 100%;
+  min-height: 500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.blockOneDog{
+  margin-top: 150px;
+  background-image: url(..//src/image/onegdogBG.jpg);
+  width: 100%;
+  border-radius: 25px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+

@@ -1,0 +1,257 @@
+.veterinary-container {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1000%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(253%2c 253%2c 253%2c 1)'%3e%3c/rect%3e%3cpath d='M776.93 617.98C872.86 585.84 809.51 322.57 1033.58 305.09 1257.65 287.61 1413.11 155.45 1546.88 153.89' stroke='rgba(19%2c 163%2c 56%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M480.37 573.04C623.11 531.32 656.8 137.41 875.09 128.04 1093.39 118.67 1072.45 198.04 1269.82 198.04 1467.18 198.04 1564.32 128.31 1664.54 128.04' stroke='rgba(19%2c 163%2c 56%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M793.98 589.74C936.01 568.26 1014.66 229.72 1241.39 229.22 1468.13 228.72 1565.06 436.69 1688.81 442.02' stroke='rgba(19%2c 163%2c 56%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M781.51 642.99C909.53 627.99 988.39 342.89 1200.47 342.48 1412.55 342.07 1506.63 507.39 1619.43 510.48' stroke='rgba(19%2c 163%2c 56%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M805.71 602.85C953.52 533.32 969.11 66.04 1167.25 58.63 1365.39 51.22 1423.52 268.77 1528.79 277.03' stroke='rgba(19%2c 163%2c 56%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1000'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+  background-position: center right;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.veterinary-title {
+  font-size: 1.8rem;
+  color: rgb(7, 133, 80);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.veterinary-description {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.veterinary-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.veterinary-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background-color: rgb(7, 133, 80);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.veterinary-button:hover {
+  background-color: rgb(5, 100, 60);
+}
+.veterinary-section {
+  padding: 40px 20px;
+}
+
+.veterinary-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  background-color: rgb(240, 255, 243);
+}
+
+.veterinary-text {
+  flex: 1;
+  padding: 1.2rem;
+  /* margin-right: 20px; */
+}
+
+.veterinary-block.reverse .veterinary-text {
+  margin-right: 0;
+  margin-left: 20px;
+}
+
+.veterinary-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.veterinary-text h2 {
+  font-size: 1.8rem;
+  color: rgb(7, 133, 80);
+  margin-bottom: 10px;
+}
+
+.veterinary-text p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+/* Price */
+
+.pricing-container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 15px;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1011%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(253%2c 253%2c 253%2c 1)'%3e%3c/rect%3e%3cpath d='M1466.5 180.63C1288.89 184.01 1135.25 416.45 795.99 415.83 456.73 415.21 325.48-7.95 125.48-27.38' stroke='rgba(19%2c 163%2c 56%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1722.91 379.17C1570.64 376.96 1455.24 203.05 1142.5 194.37 829.75 185.69 723.32-81.04 562.08-88.43' stroke='rgba(19%2c 163%2c 56%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1642.72 369.74C1540.91 369.48 1442.12 299.74 1241.52 299.74 1040.92 299.74 1064.3 380.7 840.32 369.74 616.34 358.78 586.69-54.91 439.12-101.23' stroke='rgba(19%2c 163%2c 56%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1640.5 312.36C1481.62 313.34 1342.87 461.13 1021.89 457.96 700.91 454.79 598.37-2.72 403.28-31.04' stroke='rgba(19%2c 163%2c 56%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1529.06 285.46C1376.76 290.14 1258.42 523.49 966.77 520.66 675.12 517.83 595.75 17.23 404.48-25.06' stroke='rgba(19%2c 163%2c 56%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1011'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Заголовки */
+.pricing-header {
+  color: rgb(7, 133, 80);
+  font-weight: bold;
+}
+
+.pricing-subheader {
+  font-size: 1.1rem;
+  color: rgb(85, 85, 85);
+  margin-bottom: 30px;
+}
+
+.pricing-standard .pricing-card-header {
+  color: black;
+}
+/* Список услуг */
+.pricing-card-features {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+  font-size: 1rem;
+}
+
+.pricing-card-description {
+  font-size: 0.9rem;
+  color: rgb(85, 85, 85);
+  margin: 15px 0;
+}
+
+/* Кнопки */
+.pricing-card-button {
+  background-color: transparent;
+  color: rgb(7, 133, 80);
+  border: 2px solid rgb(7, 133, 80);
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pricing-card-button:hover {
+  background-color: rgb(7, 133, 80);
+  color: white;
+}
+
+/* Дополнительный блок */
+.pricing-info {
+  padding: 20px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-info-header {
+  font-size: 1.8rem;
+  color: rgb(7, 133, 80);
+}
+
+.pricing-info-text {
+  font-size: 1rem;
+  color: rgb(85, 85, 85);
+}
+/* Основной контейнер страницы */
+.doctors-container {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1011%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(253%2c 253%2c 253%2c 1)'%3e%3c/rect%3e%3cpath d='M1466.5 180.63C1288.89 184.01 1135.25 416.45 795.99 415.83 456.73 415.21 325.48-7.95 125.48-27.38' stroke='rgba(19%2c 163%2c 56%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1722.91 379.17C1570.64 376.96 1455.24 203.05 1142.5 194.37 829.75 185.69 723.32-81.04 562.08-88.43' stroke='rgba(19%2c 163%2c 56%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1642.72 369.74C1540.91 369.48 1442.12 299.74 1241.52 299.74 1040.92 299.74 1064.3 380.7 840.32 369.74 616.34 358.78 586.69-54.91 439.12-101.23' stroke='rgba(19%2c 163%2c 56%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1640.5 312.36C1481.62 313.34 1342.87 461.13 1021.89 457.96 700.91 454.79 598.37-2.72 403.28-31.04' stroke='rgba(19%2c 163%2c 56%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1529.06 285.46C1376.76 290.14 1258.42 523.49 966.77 520.66 675.12 517.83 595.75 17.23 404.48-25.06' stroke='rgba(19%2c 163%2c 56%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1011'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Заголовок */
+.doctors-header {
+  font-size: 2rem;
+  text-align: center;
+  color: rgb(7, 133, 80);
+  margin-bottom: 30px;
+  
+}
+
+/* Слайдер */
+.doctors-slider {
+  margin-top: 20px;
+}
+
+/* Слайд */
+.doctors-slide {
+  display: flex;
+  justify-content: center;
+}
+
+/* Карточка врача */
+.doctors-card {
+  border: 1px solid rgb(7, 133, 80);
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 300px;
+  background-color: rgb(255, 255, 255);
+  transition: transform 0.3s ease-in-out;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.doctors-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Изображение врача */
+.doctors-card-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Контент карточки */
+.doctors-card-body {
+  padding: 15px;
+  text-align: center;
+}
+.doctors-card-text strong{
+  color:  rgb(7, 133, 80);
+}
+
+.doctors-card-title {
+  font-size: 1.2rem;
+  color: rgb(7, 53, 83);
+  margin-bottom: 10px;
+}
+
+.doctors-card-specialization {
+  font-size: 1rem;
+  color: rgb(102, 102, 102);
+  margin-bottom: 10px;
+}
+.gallery-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.gallery-slider {
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-image {
+  width: 100%;
+  height: 450px; 
+  object-fit: cover; 
+}
+
+@media (max-width: 576px){
+  .veterinary-block{
+    align-items: center;
+    flex-direction: column;
+  }
+  .reverse{
+    flex-direction: column-reverse;
+  }
+}

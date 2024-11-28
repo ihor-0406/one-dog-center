@@ -1,0 +1,389 @@
+{
+    "vets": [
+      {
+        "id": "vet1",
+      "image": "/src/image/doctors/vet1.jpg",
+      "name": "Олександр Іванов",
+      "specialization": "Хірург",
+      "contact": {
+        "phone": "+380501234567",
+        "email": "ivanov@example.com"
+      },
+      "workingHours": {
+        "monday": "09:00-17:00",
+        "tuesday": "10:00-18:00",
+        "wednesday": "09:00-17:00",
+        "thursday": "10:00-18:00",
+        "friday": "09:00-17:00",
+        "saturday": "10:00-14:00",
+        "sunday": ""
+      }
+    },
+    {
+      "id": "vet2",
+      "image": "/src/image/doctors/vet2.jpg",
+      "name": "Марія Петренко",
+      "specialization": "Терапевт",
+      "contact": {
+        "phone": "+380501234568",
+        "email": "petrenko@example.com"
+      },
+      "workingHours": {
+        "monday": "09:00-17:30",
+        "tuesday": "09:00-17:30",
+        "wednesday": "09:30-18:00",
+        "thursday": "09:00-17:30",
+        "friday": "09:30-18:00",
+        "saturday": "",
+        "sunday": ""
+      }
+      },
+      {
+        "id": "vet3",
+      "image": "/src/image/doctors/vet3.jpg",
+      "name": "Андрій Коваленко",
+      "specialization": "Кардіолог",
+      "contact": {
+        "phone": "+380501234569",
+        "email": "kovalenko@example.com"
+      },
+      "workingHours": {
+        "monday": "10:00-18:00",
+        "tuesday": "",
+        "wednesday": "09:00-17:00",
+        "thursday": "10:00-18:00",
+        "friday": "09:00-17:00",
+        "saturday": "09:00-13:00",
+        "sunday": ""
+      }
+      },
+      {
+        "id": "vet4",
+        "image": "/src/image/doctors/vet4.jpg",
+        "name": "Ірина Степанова",
+        "specialization": "Невролог",
+        "workingHours": {
+          "monday": "09:00-18:00",
+          "tuesday": "09:00-18:00",
+          "wednesday": "09:00-18:00",
+          "thursday": "09:00-18:00",
+          "friday": "09:00-18:00",
+          "saturday": "10:00-14:00",
+          "sunday": ""
+      }
+      },
+      {
+        "id": "vet5",
+        "image":"/src/image/doctors/vet5.jpg",
+        "name": "Дмитро Литвиненко",
+        "specialization": "Ортопед",
+        "workingHours": {
+          "monday": "09:00-18:00",
+          "tuesday": "09:00-18:00",
+          "wednesday": "09:00-18:00",
+          "thursday": "09:00-18:00",
+          "friday": "09:00-18:00",
+          "saturday": "10:00-14:00",
+          "sunday": ""
+      }
+      },
+      {
+        "id": "vet6",
+        "image": "/src/image/doctors/vet6.jpg",
+        "name": "Софія Романенко",
+        "specialization": "Терапевт",
+        "workingHours": {
+          "monday": "09:00-18:00",
+          "tuesday": "09:00-18:00",
+          "wednesday": "09:00-18:00",
+          "thursday": "09:00-18:00",
+          "friday": "09:00-18:00",
+          "saturday": "10:00-14:00",
+          "sunday": ""
+      }
+      },
+      {
+        "id": "vet7",
+        "image": "/src/image/doctors/vet7.jpg",
+        "name": "Іван Кравченко",
+        "specialization": "Хірург",
+        "workingHours": {
+          "monday": "09:00-18:00",
+          "tuesday": "09:00-18:00",
+          "wednesday": "09:00-18:00",
+          "thursday": "09:00-18:00",
+          "friday": "09:00-18:00",
+          "saturday": "10:00-14:00",
+          "sunday": ""
+      }
+      },
+      {
+        "id": "vet8",
+        "image": "/src/image/doctors/vet8.jpg",
+        "name": "Катерина Бойко",
+        "specialization": "Офтальмолог",
+        "workingHours": {
+          "monday": "09:00-18:00",
+          "tuesday": "09:00-18:00",
+          "wednesday": "09:00-18:00",
+          "thursday": "09:00-18:00",
+          "friday": "09:00-18:00",
+          "saturday": "10:00-14:00",
+          "sunday": ""
+      }
+      },
+      {
+        "id": "vet9",
+        "image": "/src/image/doctors/vet9.jpg",
+        "name": "Олексій Ткаченко",
+        "specialization": "Кардіолог",
+        "workingHours": {
+          "monday": "09:00-18:00",
+          "tuesday": "09:00-18:00",
+          "wednesday": "09:00-18:00",
+          "thursday": "09:00-18:00",
+          "friday": "09:00-18:00",
+          "saturday": "10:00-14:00",
+          "sunday": ""
+      }
+      },
+      {
+        "id": "vet10",
+        "image": "/src/image/doctors/vet10.jpg",
+        "name": "Тетяна Гончарова",
+        "specialization": "Дерматолог",
+        "workingHours": {
+          "monday": "09:00-18:00",
+          "tuesday": "09:00-18:00",
+          "wednesday": "09:00-18:00",
+          "thursday": "09:00-18:00",
+          "friday": "09:00-18:00",
+          "saturday": "10:00-14:00",
+          "sunday": ""
+      }
+      }
+    ],
+    "medicalStaff": [
+      {
+        "id": "staff1",
+        "image":"/src/image/doctors/staff1.jpg",
+        "name": "Олена Шевченко",
+        "position": "Медсестра",
+        "contact": {
+          "phone": "+380501234570",
+          "email": "shevchenko@example.com"
+        },
+        "workingHours": {
+          "monday": "09:00-18:00",
+          "tuesday": "09:00-18:00",
+          "wednesday": "09:00-18:00",
+          "thursday": "09:00-18:00",
+          "friday": "09:00-18:00",
+          "saturday": "10:00-14:00",
+          "sunday": ""
+      }
+      },
+      {
+        "id": "staff2",
+        "image":"/src/image/doctors/staff2.jpg",
+        "name": "Вікторія Гончар",
+        "position": "Асистент ветеринара",
+        "contact": {
+          "phone": "+380501234571",
+          "email": "gonchar@example.com"
+        },
+        "workingHours": {
+          "monday": "09:00-18:00",
+          "tuesday": "09:00-18:00",
+          "wednesday": "09:00-18:00",
+          "thursday": "09:00-18:00",
+          "friday": "09:00-18:00",
+          "saturday": "10:00-14:00",
+          "sunday": ""
+      }
+      },
+      {
+        "id": "staff3",
+        "image":"/src/image/doctors/staff3.jpg",
+        "name": "Ірина Лисенко",
+        "position": "Лаборант",
+        "contact": {
+          "phone": "+380501234572",
+          "email": "lysenko@example.com"
+        },
+        "workingHours": {
+          "monday": "09:00-18:00",
+          "tuesday": "09:00-18:00",
+          "wednesday": "09:00-18:00",
+          "thursday": "09:00-18:00",
+          "friday": "09:00-18:00",
+          "saturday": "10:00-14:00",
+          "sunday": ""
+      }
+      }
+    ],
+    "kynologists": [
+      {
+        "id": "kyno1",
+      "image": "/src/image/kynologists/kyno1.jpg",
+      "name": "Олексій",
+      "specialization": "Тренер з послуху",
+      "experience": 5,
+      "contact": {
+        "phone": "+380501234573",
+        "email": "ivanov.kyno@example.com"
+      },
+      "workingHours": {
+        "monday": "12:00-18:00",
+        "tuesday": "09:00-17:00",
+        "wednesday": "",
+        "thursday": "09:00-17:00",
+        "friday": "10:00-18:00",
+        "saturday": "10:00-15:00",
+        "sunday": ""
+      }
+      },
+      {
+        "id": "kyno2",
+      "image": "/src/image/kynologists/kyno2.jpeg",
+      "name": "Марія",
+      "specialization": "Тренер з пошукових робіт",
+      "experience": 8,
+      "contact": {
+        "phone": "+380501234574",
+        "email": "petrova.kyno@example.com"
+      },
+      "workingHours": {
+        "monday": "",
+        "tuesday": "09:00-17:00",
+        "wednesday": "10:00-18:00",
+        "thursday": "09:00-17:00",
+        "friday": "10:00-18:00",
+        "saturday": "11:00-16:00",
+        "sunday": ""
+      }
+      },
+      {
+        "id": "kyno3",
+        "image": "/src/image/kynologists/kyno3.jpg",
+        "name": "Сергій ",
+        "specialization": "Кінолог з поведінки",
+        "experience": 10,
+        "contact": {
+          "phone": "+380501234575",
+          "email": "kovalenko.kyno@example.com"
+        },
+        "workingHours": {
+          "monday": "09:00-18:00",
+          "tuesday": "09:00-18:00",
+          "wednesday": "09:00-18:00",
+          "thursday": "09:00-18:00",
+          "friday": "09:00-18:00",
+          "saturday": "10:00-14:00",
+          "sunday": ""
+      }
+      }
+    ],
+    "groomingSpecialists": [
+      {
+        "id": "groom1",
+      "image": "/src/image/groomingSpecialists/groomingSpecialists1.jpg",
+      "name": "Ірина",
+      "specialization": "Стрижка та догляд за шерстю",
+      "experience": 6,
+      "contact": {
+        "phone": "+380501234576",
+        "email": "litvinenko.groom@example.com"
+      },
+      "workingHours": {
+        "monday": "09:00-16:00",
+        "tuesday": "10:00-18:00",
+        "wednesday": "",
+        "thursday": "10:00-18:00",
+        "friday": "09:00-17:00",
+        "saturday": "",
+        "sunday": "10:00-14:00"
+      }
+      },
+      {
+        "id": "groom2",
+      "image": "/src/image/groomingSpecialists/groomingSpecialists2.jpg",
+      "name": "Андрій",
+      "specialization": "Догляд за лапами та пазурами",
+      "experience": 4,
+      "contact": {
+        "phone": "+380501234577",
+        "email": "pavlenko.groom@example.com"
+      },
+      "workingHours": {
+        "monday": "09:30-17:30",
+        "tuesday": "10:00-18:00",
+        "wednesday": "09:00-17:00",
+        "thursday": "",
+        "friday": "09:30-17:30",
+        "saturday": "10:00-15:00",
+        "sunday": ""
+      }
+      },
+      {
+        "id": "groom3",
+        "image": "/src/image/groomingSpecialists/groomingSpecialists3.jpeg",
+        "name": "Катерина",
+        "specialization": "Купання та косметичні процедури",
+        "experience": 7,
+        "contact": {
+          "phone": "+380501234578",
+          "email": "boyko.groom@example.com"
+        },
+        "workingHours": {
+          "monday": "09:00-18:00",
+          "tuesday": "09:00-18:00",
+          "wednesday": "09:00-18:00",
+          "thursday": "09:00-18:00",
+          "friday": "09:00-18:00",
+          "saturday": "10:00-14:00",
+          "sunday": ""
+      }
+      },
+      {
+        "id": "groom4",
+        "image": "/src/image/groomingSpecialists/groomingSpecialists4.jpg",
+        "name": "Олена",
+        "specialization": "Терапевтичний догляд та розчісування шерсті",
+        "experience": 5,
+        "contact": {
+          "phone": "+380501234579",
+          "email": "shevchenko.groom@example.com"
+        },
+        "workingHours": {
+          "monday": "09:00-18:00",
+          "tuesday": "09:00-18:00",
+          "wednesday": "09:00-18:00",
+          "thursday": "09:00-18:00",
+          "friday": "09:00-18:00",
+          "saturday": "10:00-14:00",
+          "sunday": ""
+      }
+      },
+      {
+        "id": "groom5",
+        "image": "/src/image/groomingSpecialists/groomingSpecialists5.png",
+        "name": "Вікторія",
+        "specialization": "Елітний догляд за шерстю та стилізація",
+        "experience": 8,
+        "contact": {
+          "phone": "+380501234580",
+          "email": "gonchar.groom@example.com"
+        },
+        "workingHours": {
+          "monday": "09:00-18:00",
+          "tuesday": "09:00-18:00",
+          "wednesday": "09:00-18:00",
+          "thursday": "09:00-18:00",
+          "friday": "09:00-18:00",
+          "saturday": "10:00-14:00",
+          "sunday": ""
+      }
+      }
+    ]
+  }

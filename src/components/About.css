@@ -1,0 +1,130 @@
+.about-us-description {
+    padding: 40px;
+    background-color: white;
+    color: rgb(51, 51, 51);
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .about-intro h1 {
+    font-size: 2.5rem;
+    color: rgb(7, 133, 80);
+  }
+  
+  .about-intro p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  .about-values, .about-vision, .about-goals, .about-statistics, .about-message {
+    margin-top: 30px;
+  }
+  
+  .about-values h2, .about-vision h2, .about-goals h2, .about-statistics h2, .about-message h2 {
+    font-size: 2rem;
+    color: rgb(7, 133, 80);
+    margin-bottom: 10px;
+  }
+  
+  ul {
+    margin: 20px 0;
+    padding-left: 20px;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
+  }
+  
+  strong {
+    color: rgb(7, 133, 80);
+  }
+  
+  p {
+    margin-bottom: 20px;
+  }
+  .working-hours-section {
+    background-color: white;
+    margin-top: 80px;
+    padding: 40px 20px;
+    border-radius: 10px;
+  }
+  
+  .working-hours-section h2 {
+    color: rgb(7, 133, 80);
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .working-hours-section h3 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .working-hours-section p {
+    font-size: 1rem;
+    color: #555;
+    margin: 0;
+  }
+  .sponsors-section {
+    padding: 40px 20px;
+    background-color: white;
+    border-radius: 10px;
+  }
+  
+  .sponsors-section h2 {
+    color: rgb(7, 133, 80);
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .sponsor-item {
+    position: relative;
+  }
+  
+  .sponsor-logo {
+    max-width: 100px;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .sponsor-item:hover .sponsor-logo {
+    transform: scale(1.5);
+  }
+  
+  .sponsor-tooltip {
+    position: fixed; /* Используем fixed для точного позиционирования */
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    max-width: 250px;
+    pointer-events: none; /* Чтобы курсор не взаимодействовал с подсказкой */
+    z-index: 1000; /* Убедитесь, что подсказка находится выше других элементов */
+    white-space: pre-wrap;
+  }
+  
+  .sponsor-tooltip strong {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+  @media (max-width: 576px){
+    .about-intro h1{
+        font-size: 1rem;
+    }
+    .about-intro{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    };
+    .about-values{
+        flex-direction: column-reverse;
+        width: 100%;
+    };
+    .about-gols-statistics{
+        flex-direction: column;
+        width: 100%;
+    }
+  }
+  
