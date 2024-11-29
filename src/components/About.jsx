@@ -22,37 +22,37 @@ const about =() =>{
       id: 1,
       name: 'PetFood Company',
       description: 'Лідер у виробництві кормів для собак.',
-      logo: '/image/sponsors/dogCare.png',
+      logo: '/one-dog-center/public/image/sponsors/dogCare.png',
     },
     {
       id: 2,
       name: 'DogCare Products',
       description: 'Інноваційні продукти для догляду за собаками.',
-      logo: '/image/sponsors/happypaws.png',
+      logo: '/one-dog-center/public/image/sponsors/happypaws.png',
     },
     {
       id: 3,
       name: 'HappyPaws Foundation',
       description: 'Фонд підтримки здоров\'я домашніх тварин.',
-      logo: "/image/sponsors/petFood.png",
+      logo: "/one-dog-center/public/image/sponsors/petFood.png",
     },
     {
       id: 4,
       name: 'VetTech Innovations',
       description: 'Розробка сучасного ветеринарного обладнання.',
-      logo: '/image/sponsors/vettech.png',
+      logo: '/one-dog-center/public/image/sponsors/vettech.png',
     },
     {
       id: 5,
       name: 'HealthyPaws Nutrition',
       description: 'Збалансоване харчування для собак.',
-      logo: '/image/sponsors/HealthyPaws.png',
+      logo: '/one-dog-center/public/image/sponsors/HealthyPaws.png',
     },
     {
       id: 6,
       name: 'BarkBright Toys',
       description: 'Іграшки, які роблять собак щасливими.',
-      logo: '/image/sponsors/Bark-Bright.png',
+      logo: '/one-dog-center/public/image/Bark-Bright.png',
     },
   ];
     const galleryImages = [
