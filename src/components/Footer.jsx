@@ -9,17 +9,17 @@ const Footer = () => {
     {
       id: 1,
       name: 'BarkBright Toys',
-      logo: '/src/image/sponsors/Bark-Bright.png',
+      logo: '/public/image/sponsors/Bark-Bright.png',
     },
     {
       id: 2,
       name: 'HealthyPaws Nutrition',
-      logo: '/src/image/sponsors/HealthyPaws.png',
+      logo: '/public/image/sponsors/HealthyPaws.png',
     },
     {
       id: 3,
       name: 'VetTech Innovations',
-      logo: '/src/image/sponsors/vettech.png',
+      logo: '/public/image/sponsors/vettech.png',
     },
   ];
 

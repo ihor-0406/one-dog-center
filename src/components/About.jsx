@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import "./About.css";
-import about1 from "../image/about1.jpg";
-import about2 from "../image/about2.jpg";
-import about3 from "../image/about3.jpg";
-import about4 from "../image/about4.jpg";
+import about1 from "/image/about1.jpg";
+import about2 from "/image/about2.jpg";
+import about3 from "/image/about3.jpg";
+import about4 from "/image/about4.jpg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaw } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
@@ -40,31 +40,31 @@ const about =() =>{
       id: 4,
       name: 'VetTech Innovations',
       description: 'Розробка сучасного ветеринарного обладнання.',
-      logo: '/src/image/sponsors/vettech.png',
+      logo: '/public/image/sponsors/vettech.png',
     },
     {
       id: 5,
       name: 'HealthyPaws Nutrition',
       description: 'Збалансоване харчування для собак.',
-      logo: '/src/image/sponsors/HealthyPaws.png',
+      logo: '/public/image/sponsors/HealthyPaws.png',
     },
     {
       id: 6,
       name: 'BarkBright Toys',
       description: 'Іграшки, які роблять собак щасливими.',
-      logo: '/src/image/sponsors/Bark-Bright.png',
+      logo: '/public/image/sponsors/Bark-Bright.png',
     },
   ];
     const galleryImages = [
-        { id: 1, src: "/src/image/about01.jpg", alt:'Осмотр пса' },
-        { id: 2, src: "/src/image/about02.jpg", alt:'Осмотр пса' }, 
-        { id: 3, src: "/src/image/about03.webp", alt: 'Осмотр пса' },
-        { id: 4, src: "/src/image/about04.jpg", alt: 'Тренування пса' },
-        { id: 5, src: "/src/image/about05.jpg", alt:  'Тренування пса'},
-        { id: 6, src: "/src/image/about06.jpg", alt:  'пес в лісі'},
-        { id: 7, src: "/src/image/about07.jpeg", alt:  'Грумінг пса'},
-        { id: 8, src: "/src/image/about08.jpg", alt:  'Грумінг пса'},
-        { id: 9, src: "/src/image/about09.jpg", alt:  'Грумінг пса'}
+        { id: 1, src: "/public/image/about01.jpg", alt:'Осмотр пса' },
+        { id: 2, src: "/public/image/about02.jpg", alt:'Осмотр пса' }, 
+        { id: 3, src: "/public/image/about03.webp", alt: 'Осмотр пса' },
+        { id: 4, src: "/public/image/about04.jpg", alt: 'Тренування пса' },
+        { id: 5, src: "/public/image/about05.jpg", alt:  'Тренування пса'},
+        { id: 6, src: "/public/image/about06.jpg", alt:  'пес в лісі'},
+        { id: 7, src: "/public/image/about07.jpeg", alt:  'Грумінг пса'},
+        { id: 8, src: "/public/image/about08.jpg", alt:  'Грумінг пса'},
+        { id: 9, src: "/public/image/about09.jpg", alt:  'Грумінг пса'}
       ];
       const handleMouseEnter = (sponsor, event) => {
         setHoveredSponsor(sponsor);

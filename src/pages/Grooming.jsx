@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
-import groom1 from "../image/grooming1.jpg";
-import groom2 from "../image/grooming2.jpg";
-import groom3 from "../image/grooming3.jpg";
+import groom1 from "/image/grooming1.jpg";
+import groom2 from "/image/grooming2.jpg";
+import groom3 from "/image/grooming3.jpg";
 import "./Grooming.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -21,11 +21,11 @@ const grooming=()=>{
     }, []);
 
     const galleryImages = [
-      { id: 1, src: "/src/image/grooming01.jpg", alt:'Огляд собаки лікарям ' },
-      { id: 2, src: "/src/image/grooming02.jpg", alt:'Кабінет для огляду тварин' }, 
-      { id: 3, src: "/src/image/grooming03.jpg", alt: 'Операційне відділення' },
-      { id: 4, src: "/src/image/grooming05.jpg", alt: 'Приймальне відділення' },
-      { id: 5, src: "/src/image/grooming06.jpg", alt:  'Приймальне відділення'}
+      { id: 1, src: "/public/image/grooming01.jpg", alt:'Огляд собаки лікарям ' },
+      { id: 2, src: "/public/image/grooming02.jpg", alt:'Кабінет для огляду тварин' }, 
+      { id: 3, src: "/public/image/grooming03.jpg", alt: 'Операційне відділення' },
+      { id: 4, src: "/public/image/grooming05.jpg", alt: 'Приймальне відділення' },
+      { id: 5, src: "/public/image/grooming06.jpg", alt:  'Приймальне відділення'}
     ];
 
     const handleProfileRedirect = () => {

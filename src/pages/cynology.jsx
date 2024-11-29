@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
-import cyn1 from "../image/cynology1.jpg";
-import cyn2 from "../image/cynology2.jpeg";
-import cyn3 from "../image/cynology3.jpg";
+import cyn1 from "/image/cynology1.jpg";
+import cyn2 from "/image/cynology2.jpeg";
+import cyn3 from "/image/cynology3.jpg";
 import "./cynology.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -21,11 +21,11 @@ const cynology=()=>{
     }, []);
 
     const galleryImages = [
-      { id: 1, src: "/src/image/kyno-dog1.jpg", alt:'Тренер тренерує пса' },
-      { id: 2, src: "/src/image/kyno-dog2.jpg", alt:'Три німецкі вівчарки' }, 
-      { id: 3, src: "/src/image/kyno-dog4.jpg", alt: 'Дівчина грає з псом' },
-      { id: 4, src: "/src/image/kyno-dog5.jpg", alt: 'Пес з людиною ' },
-      { id: 5, src: "/src/image/kyno-dog6.jpg", alt:  'Пес з людиною'}
+      { id: 1, src: "/public/image/kyno-dog1.jpg", alt:'Тренер тренерує пса' },
+      { id: 2, src: "/public/image/kyno-dog2.jpg", alt:'Три німецкі вівчарки' }, 
+      { id: 3, src: "/public/image/kyno-dog4.jpg", alt: 'Дівчина грає з псом' },
+      { id: 4, src: "/public/image/kyno-dog5.jpg", alt: 'Пес з людиною ' },
+      { id: 5, src: "/public/image/kyno-dog6.jpg", alt:  'Пес з людиною'}
     ];
 
     const handleProfileRedirect = () => {

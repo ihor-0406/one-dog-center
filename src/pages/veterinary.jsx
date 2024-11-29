@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../config/firebaseConfig"; 
 import "./veterinary.css"; 
-import vet1 from "../image/veterinary1.jpeg";
-import vet2 from "../image/veterina2.jpeg";
-import vet3 from "../image/veterinary3.jpg";
+import vet1 from "/image/veterinary1.jpeg";
+import vet2 from "/image/veterina2.jpeg";
+import vet3 from "/image/veterinary3.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -119,11 +119,11 @@ const Veterinary = () => {
   };
 
   const galleryImages = [
-    { id: 1, src: "/src/image/center1.jpg", alt:'Огляд собаки лікарям ' },
-    { id: 2, src: "/src/image/center2.jpg", alt:'Кабінет для огляду тварин' }, 
-    { id: 3, src: "/src/image/center3.jpg", alt: 'Операційне відділення' },
-    { id: 4, src: "/src/image/center4.webp", alt: 'Приймальне відділення' },
-    { id: 5, src: "/src/image/center5.jpg", alt:  'Приймальне відділення'}
+    { id: 1, src: "/public/image/center1.jpg", alt:'Огляд собаки лікарям ' },
+    { id: 2, src: "/public/image/center2.jpg", alt:'Кабінет для огляду тварин' }, 
+    { id: 3, src: "/public/image/center3.jpg", alt: 'Операційне відділення' },
+    { id: 4, src: "/public/image/center4.webp", alt: 'Приймальне відділення' },
+    { id: 5, src: "/public/image/center5.jpg", alt:  'Приймальне відділення'}
   ];
   
 

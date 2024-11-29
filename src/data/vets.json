@@ -2,7 +2,7 @@
     "vets": [
       {
         "id": "vet1",
-      "image": "/src/image/doctors/vet1.jpg",
+      "image": "/public/image/doctors/vet1.jpg",
       "name": "Олександр Іванов",
       "specialization": "Хірург",
       "contact": {
@@ -21,7 +21,7 @@
     },
     {
       "id": "vet2",
-      "image": "/src/image/doctors/vet2.jpg",
+      "image": "/public/image/doctors/vet2.jpg",
       "name": "Марія Петренко",
       "specialization": "Терапевт",
       "contact": {
@@ -40,7 +40,7 @@
       },
       {
         "id": "vet3",
-      "image": "/src/image/doctors/vet3.jpg",
+      "image": "/public/image/doctors/vet3.jpg",
       "name": "Андрій Коваленко",
       "specialization": "Кардіолог",
       "contact": {
@@ -59,7 +59,7 @@
       },
       {
         "id": "vet4",
-        "image": "/src/image/doctors/vet4.jpg",
+        "image": "/public/image/doctors/vet4.jpg",
         "name": "Ірина Степанова",
         "specialization": "Невролог",
         "workingHours": {
@@ -74,7 +74,7 @@
       },
       {
         "id": "vet5",
-        "image":"/src/image/doctors/vet5.jpg",
+        "image":"/public/image/doctors/vet5.jpg",
         "name": "Дмитро Литвиненко",
         "specialization": "Ортопед",
         "workingHours": {
@@ -89,7 +89,7 @@
       },
       {
         "id": "vet6",
-        "image": "/src/image/doctors/vet6.jpg",
+        "image": "/public/image/doctors/vet6.jpg",
         "name": "Софія Романенко",
         "specialization": "Терапевт",
         "workingHours": {
@@ -104,7 +104,7 @@
       },
       {
         "id": "vet7",
-        "image": "/src/image/doctors/vet7.jpg",
+        "image": "/public/image/doctors/vet7.jpg",
         "name": "Іван Кравченко",
         "specialization": "Хірург",
         "workingHours": {
@@ -119,7 +119,7 @@
       },
       {
         "id": "vet8",
-        "image": "/src/image/doctors/vet8.jpg",
+        "image": "/public/image/doctors/vet8.jpg",
         "name": "Катерина Бойко",
         "specialization": "Офтальмолог",
         "workingHours": {
@@ -134,7 +134,7 @@
       },
       {
         "id": "vet9",
-        "image": "/src/image/doctors/vet9.jpg",
+        "image": "/public/image/doctors/vet9.jpg",
         "name": "Олексій Ткаченко",
         "specialization": "Кардіолог",
         "workingHours": {
@@ -149,7 +149,7 @@
       },
       {
         "id": "vet10",
-        "image": "/src/image/doctors/vet10.jpg",
+        "image": "/public/image/doctors/vet10.jpg",
         "name": "Тетяна Гончарова",
         "specialization": "Дерматолог",
         "workingHours": {
@@ -166,7 +166,7 @@
     "medicalStaff": [
       {
         "id": "staff1",
-        "image":"/src/image/doctors/staff1.jpg",
+        "image":"/public/image/doctors/staff1.jpg",
         "name": "Олена Шевченко",
         "position": "Медсестра",
         "contact": {
@@ -185,7 +185,7 @@
       },
       {
         "id": "staff2",
-        "image":"/src/image/doctors/staff2.jpg",
+        "image":"/public/image/doctors/staff2.jpg",
         "name": "Вікторія Гончар",
         "position": "Асистент ветеринара",
         "contact": {
@@ -204,7 +204,7 @@
       },
       {
         "id": "staff3",
-        "image":"/src/image/doctors/staff3.jpg",
+        "image":"/public/image/doctors/staff3.jpg",
         "name": "Ірина Лисенко",
         "position": "Лаборант",
         "contact": {
@@ -225,7 +225,7 @@
     "kynologists": [
       {
         "id": "kyno1",
-      "image": "/src/image/kynologists/kyno1.jpg",
+      "image": "/public/image/kynologists/kyno1.jpg",
       "name": "Олексій",
       "specialization": "Тренер з послуху",
       "experience": 5,
@@ -245,7 +245,7 @@
       },
       {
         "id": "kyno2",
-      "image": "/src/image/kynologists/kyno2.jpeg",
+      "image": "/public/image/kynologists/kyno2.jpeg",
       "name": "Марія",
       "specialization": "Тренер з пошукових робіт",
       "experience": 8,
@@ -265,7 +265,7 @@
       },
       {
         "id": "kyno3",
-        "image": "/src/image/kynologists/kyno3.jpg",
+        "image": "/public/image/kynologists/kyno3.jpg",
         "name": "Сергій ",
         "specialization": "Кінолог з поведінки",
         "experience": 10,
@@ -287,7 +287,7 @@
     "groomingSpecialists": [
       {
         "id": "groom1",
-      "image": "/src/image/groomingSpecialists/groomingSpecialists1.jpg",
+      "image": "/public/image/groomingSpecialists/groomingSpecialists1.jpg",
       "name": "Ірина",
       "specialization": "Стрижка та догляд за шерстю",
       "experience": 6,
@@ -307,7 +307,7 @@
       },
       {
         "id": "groom2",
-      "image": "/src/image/groomingSpecialists/groomingSpecialists2.jpg",
+      "image": "/public/image/groomingSpecialists/groomingSpecialists2.jpg",
       "name": "Андрій",
       "specialization": "Догляд за лапами та пазурами",
       "experience": 4,
@@ -327,7 +327,7 @@
       },
       {
         "id": "groom3",
-        "image": "/src/image/groomingSpecialists/groomingSpecialists3.jpeg",
+        "image": "/public/image/groomingSpecialists/groomingSpecialists3.jpeg",
         "name": "Катерина",
         "specialization": "Купання та косметичні процедури",
         "experience": 7,
@@ -347,7 +347,7 @@
       },
       {
         "id": "groom4",
-        "image": "/src/image/groomingSpecialists/groomingSpecialists4.jpg",
+        "image": "/public/image/groomingSpecialists/groomingSpecialists4.jpg",
         "name": "Олена",
         "specialization": "Терапевтичний догляд та розчісування шерсті",
         "experience": 5,
@@ -367,7 +367,7 @@
       },
       {
         "id": "groom5",
-        "image": "/src/image/groomingSpecialists/groomingSpecialists5.png",
+        "image": "/public/image/groomingSpecialists/groomingSpecialists5.png",
         "name": "Вікторія",
         "specialization": "Елітний догляд за шерстю та стилізація",
         "experience": 8,

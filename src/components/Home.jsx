@@ -10,10 +10,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
 import './Home.css';
-import saveIMG from "../image/saveBlock.jpg";
-import post1 from "../image/post1.jpg";
-import post2 from "../image/post2.jpg";
-import newsDog from "../image/imageAmimal.png"
+import saveIMG from "/image/saveBlock.jpg";
+import post1 from "/image/post1.jpg";
+import post2 from "/image/post2.jpg";
+import newsDog from "/image/imageAmimal.png"
 
 
 function Home() {

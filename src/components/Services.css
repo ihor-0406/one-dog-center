@@ -1,6 +1,6 @@
 
 .cardOne{
-    background-image: url(..//image/veteri-doctor-bg.jpg);
+    background-image: url(/image/veteri-doctor-bg.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -12,7 +12,7 @@
 
 }
 .cardTwo{
-    background-image: url(..//image/cardTwo.webp);
+    background-image: url(/image/cardTwo.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -25,7 +25,7 @@
 
 }
 .cardThree{
-    background-image: url(..//image/grooming.jpg);
+    background-image: url(/image/grooming.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
