@@ -9,11 +9,11 @@ import { faPaw } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
-import './Home.css';
+import '../styles/Home.css';
 import saveIMG from "/image/saveBlock.jpg";
 import post1 from "/image/post1.jpg";
 import post2 from "/image/post2.jpg";
-import newsDog from "/image/imageAmimal.png"
+// import newsDog from "/image/imageAmimal.png"
 
 
 function Home() {
@@ -118,70 +118,159 @@ function Home() {
       }
     });
   };
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+        const descriptions = {
+            labrador: "Лабрадор — відданий, розумний та енергійний собака, ідеально підходить для сімейного життя.",
+            german_shepherd: "Німецька вівчарка — сміливий, надійний і високорозумний захисник.",
+            bulldog: "Бульдог — спокійний і люблячий компаньйон, який добре адаптується до квартирного життя.",
+            poodle: "Пудель — дуже розумний, активний і легко навчається собака, що обожнює увагу.",
+            pomeranian: "Померанський шпіц — жвавий і енергійний собака з великим серцем.",
+            chihuahua: "Чихуахуа — маленький, але хоробрий і відданий компаньйон.",
+            dalmatian: "Далматинець — грайливий і енергійний собака, який потребує багато руху.",
+            doberman: "Доберман — вірний охоронець і сміливий компаньйон.",
+            akita: "Акита — величний собака з сильною особистістю, що славиться відданістю.",
+            pug: "Мопс — веселий і дружелюбний собака, який легко знаходить спільну мову з людьми.",
+            beagle: "Бігль — допитливий, грайливий і дуже соціальний собака.",
+            husky: "Хаскі — енергійний і незалежний собака з вражаючою витривалістю.",
+            rottweiler: "Ротвейлер — впевнений, захисний і дуже вірний собака.",
+            yorkshire_terrier: "Йоркширський тер'єр — маленький, але сміливий і грайливий компаньйон.",
+            golden_retriever: "Голден ретрівер — доброзичливий і дуже розумний собака, що легко навчається.",
+            boxer: "Боксер — життєрадісний і енергійний собака, який любить дітей.",
+            shih_tzu: "Ши-тцу — ласкавий, чарівний собака, який обожнює увагу.",
+            dachshund: "Такса — маленький, але сміливий і активний мисливець.",
+            border_collie: "Бордер коллі — надзвичайно розумний і енергійний собака.",
+            saint_bernard: "Сенбернар — лагідний гігант, відомий своїм добрим серцем.",
+            alaskan_malamute: "Аляскинський маламут — сильний і витривалий собака, який любить активний спосіб життя.",
+            australian_shepherd: "Австралійська вівчарка — розумний, енергійний і відданий компаньйон.",
+            basset_hound: "Бассет хаунд — спокійний і доброзичливий собака з сильним нюхом.",
+            bernese_mountain_dog: "Бернський зенненхунд — великий і лагідний собака, відомий своєю відданістю.",
+            chow_chow: "Чау-чау — гордий і незалежний собака з унікальним виглядом.",
+            cocker_spaniel: "Кокер спанієль — грайливий і люблячий собака, який обожнює прогулянки.",
+            greyhound: "Грейхаунд — швидкий і елегантний собака, що має спокійну натуру.",
+            jack_russell_terrier: "Джек рассел тер'єр — енергійний, веселий і дуже активний собака.",
+            maltese: "Мальтійська болонка — маленький і чарівний собака, який любить увагу.",
+            newfoundland: "Ньюфаундленд — лагідний гігант, відомий своїм плаванням і рятувальними здібностями.",
+            pit_bull: "Пітбуль — сміливий і захисний собака, що потребує правильного виховання.",
+            pomsky: "Помскі — маленький, грайливий і дуже симпатичний собака.",
+            samoyed: "Самоїд — дружелюбний і завжди усміхнений собака, відомий своєю білою шерстю.",
+            siberian_husky: "Сибірський хаскі — витривалий і активний собака з неймовірною витривалістю.",
+            weimaraner: "Веймаранер — енергійний і розумний мисливський собака.",
+            westie: "Вест хайленд тер'єр — веселий і енергійний маленький собака.",
+            whippet: "Віпет — швидкий і граціозний собака, який обожнює комфорт.",
+            australian_cattle_dog: "Австралійський пастуший собака — енергійний і працелюбний компаньйон.",
+            bloodhound: "Бладхаунд — доброзичливий собака з неймовірно чутливим нюхом.",
+            cane_corso: "Кане корсо — впевнений і захисний собака, який відмінно ладнає з дітьми.",
+            great_dane: "Німецький дог — величний гігант, який славиться своїм лагідним характером.",
+            irish_setter: "Ірландський сетер — енергійний і витончений собака, який любить природу.",
+            mastiff: "Мастиф — сильний і впевнений собака, що славиться своїм спокоєм.",
+            vizsla: "Візсла — активний і розумний мисливський собака.",
+            shar_pei: "Шарпей — унікальний собака з глибокими складками і відданим характером.",
+            boston_terrier: "Бостон тер'єр — маленький і елегантний собака з веселою натурою.",
+            cavalier_king_charles_spaniel: "Кавалер кінг чарльз спанієль — люблячий і ніжний собака, ідеальний для сімейного життя.",
+          };
 
-  useEffect(() => {
-      const fetchNews = async () => {
-          const apiKey = "008eb5e12ac543abb1d037e828630907";
-          const url = `https://newsapi.org/v2/everything?q=тварини OR ветеринарія OR пес OR кішка&language=uk&pageSize=10&apiKey=${apiKey}`;
-
-          try {
-              const response = await fetch(url);
-              if (!response.ok) {
-                  throw new Error("Помилка при завантаженні новин");
-              }
-              const data = await response.json();
-              setArticles(data.articles);
-              setLoading(false);
-          } catch (error) {
-              setError(error.message);
-              setLoading(false);
-          }
-      };
-
-      fetchNews();
-  }, []);
-
-  const questionsAndAnswers = [
-      {
-          question: "Скільки разів на день потрібно гуляти з собакою?",
-          answer:
-              "Дорослих собак рекомендується вигулювати 2–3 рази на день. Щенята потребують більше прогулянок, щоб привчитися до гігієни.",
-      },
-      {
-          question: "Як часто потрібно годувати собаку?",
-          answer:
-              "Дорослих собак годують двічі на день — вранці та ввечері. Щенят потрібно годувати частіше, до 4–6 разів на день залежно від віку.",
-      },
-      {
-          question: "Чи потрібно чистити зуби собаці?",
-          answer:
-              "Так, регулярне чищення зубів допомагає запобігти хворобам ясен і зубів. Використовуйте спеціальні щітки та пасти для собак.",
-      },
-      {
-          question: "Як обрати правильний корм для собаки?",
-          answer:
-              "Обирайте корм відповідно до віку, розміру та активності собаки. Проконсультуйтеся з ветеринаром для вибору найкращого варіанту.",
-      },
-      {
-          question: "Що робити, якщо собака постійно чухається?",
-          answer:
-              "Чухання може бути викликане алергією, паразитами чи шкірними захворюваннями. Зверніться до ветеринара для діагностики та лікування.",
-      },
-  ];
-
-  if (loading) {
-      return <div>Завантаження новин...</div>;
-  }
-
-  if (error) {
-      return <div>Помилка: {error}</div>;
-  }
+            const [dogBreedsWithImages, setDogBreedsWithImages] = useState([]);
+            const [loading, setLoading] = useState(true);
+            const [error, setError] = useState(null);
+          
+            useEffect(() => {
+              const fetchDogBreeds = async () => {
+                try {
+                  const response = await fetch("https://dog.ceo/api/breeds/list/all");
+                  const breedData = await response.json();
+                  const allBreeds = Object.keys(breedData.message);
+          
+                  // Отбираем только тех собак, которые есть в массиве descriptions
+                  const filteredBreeds = allBreeds.filter((breed) =>
+                    descriptions.hasOwnProperty(breed)
+                  );
+          
+                  const dogBreeds = await Promise.all(
+                    filteredBreeds.map(async (breed) => {
+                      const imageResponse = await fetch(
+                        `https://dog.ceo/api/breed/${breed}/images/random`
+                      );
+                      const imageData = await imageResponse.json();
+          
+                      return {
+                        name: breed,
+                        description: descriptions[breed],
+                        image: imageData.message,
+                      };
+                    })
+                  );
+          
+                  setDogBreedsWithImages(dogBreeds);
+                  setLoading(false);
+                } catch (error) {
+                  setError("Помилка при завантаженні даних про собак.");
+                  setLoading(false);
+                }
+              };
+          
+              fetchDogBreeds();
+            }, []);
+          
+            if (loading) {
+              return <div>Завантаження...</div>;
+            }
+          
+            if (error) {
+              return <div>{error}</div>;
+            }
+            const questionsAndAnswers = [
+                {
+                  question: "Скільки разів на день потрібно гуляти з собакою?",
+                  answer:
+                    "Дорослих собак рекомендується вигулювати 2–3 рази на день. Щенята потребують більше прогулянок, щоб привчитися до гігієни.",
+                },
+                {
+                  question: "Як часто потрібно годувати собаку?",
+                  answer:
+                    "Дорослих собак годують двічі на день — вранці та ввечері. Щенят потрібно годувати частіше, до 4–6 разів на день залежно від віку.",
+                },
+                {
+                  question: "Чи потрібно чистити зуби собаці?",
+                  answer:
+                    "Так, регулярне чищення зубів допомагає запобігти хворобам ясен і зубів. Використовуйте спеціальні щітки та пасти для собак.",
+                },
+                {
+                  question: "Як обрати правильний корм для собаки?",
+                  answer:
+                    "Обирайте корм відповідно до віку, розміру та активності собаки. Проконсультуйтеся з ветеринаром для вибору найкращого варіанту.",
+                },
+                {
+                  question: "Що робити, якщо собака постійно чухається?",
+                  answer:
+                    "Чухання може бути викликане алергією, паразитами чи шкірними захворюваннями. Зверніться до ветеринара для діагностики та лікування.",
+                },
+                {
+                  question: "Як навчити собаку виконувати команди?",
+                  answer:
+                    "Навчання має бути послідовним і позитивним. Використовуйте нагороди, такі як ласощі або похвала, щоб мотивувати собаку.",
+                },
+                {
+                  question: "Як доглядати за шерстю собаки?",
+                  answer:
+                    "Регулярне розчісування допомагає зберегти шерсть у хорошому стані. Деякі породи потребують стрижки або спеціального догляду.",
+                },
+                {
+                  question: "Чи потрібно одягати собаку в холодну погоду?",
+                  answer:
+                    "Маленьким або короткошерстим собакам може знадобитися теплий одяг у холодну погоду. Це допомагає запобігти переохолодженню.",
+                },
+                {
+                  question: "Що робити, якщо собака боїться гучних звуків?",
+                  answer:
+                    "Спробуйте створити безпечне місце для собаки та використовуйте методи заспокоєння. За потреби зверніться до ветеринара або кінолога.",
+                },
+                {
+                  question: "Як підготувати собаку до візиту до ветеринара?",
+                  answer:
+                    "Підготовка до візиту включає привчання собаки до перенесення, заспокійливий тон і забезпечення ласощів після відвідування.",
+                },
+              ];
     return (
         <section className="container">
-            {/* Блок із загальною інформацією про центр */}
             <div className="container home-page">
                 <div className="center-info">
                     <div className="d-flex justify-content-between align-items-center">
@@ -344,22 +433,26 @@ function Home() {
             </div>
             <div className="container containerNews my-3 d-flex justify-content-between gap-2">
     <div className='newsBlock col-md-8'>
-       <div className="news-column">
-        <h2>Новини про тварин</h2>
-        <ul className="news-list">
-            {articles.map((article, index) => (
-                <li key={index} className="news-item">
-                    <a href={article.url} target="_blank" rel="noopener noreferrer">
-                        <h3>{article.title}</h3>
-                    </a>
-                    <p>{article.description}</p>
-                    <small>Джерело: {article.source.name}</small>
-                </li>
-            ))}
-        </ul>
-    </div>
-    <div className="imgNews d-flex justify-content-center">
-        <img src={newsDog} alt="News Animals" width="100%" />
+    <div className="container my-5 ">
+    <h1 className="text-center">Породи собак</h1>
+      <ul className="row list-unstyled dogsInfo">
+        {dogBreedsWithImages.map((dog, index) => (
+          <li key={index} className="col-md-6  mb-4">
+            <div className="card">
+              <img
+                src={dog.image}
+                alt={dog.name}
+                className="card-img"
+                style={{ height: "200px", objectFit: "cover", objectPosition:"center" }}
+              />
+              <div className="card-body">
+                <h5 className="card-title text-success fs-3 fw-bold">{dog.name}</h5>
+                <p className="card-text fw-bolder">{dog.description}</p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
     </div>
     <div className="info-column col-md-4">

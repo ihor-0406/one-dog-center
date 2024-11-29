@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "./About.css";
+import "../styles/About.css";
 import about1 from "/image/about1.jpg";
 import about2 from "/image/about2.jpg";
 import about3 from "/image/about3.jpg";
@@ -22,37 +22,37 @@ const about =() =>{
       id: 1,
       name: 'PetFood Company',
       description: 'Лідер у виробництві кормів для собак.',
-      logo: '/public/image/sponsors/dogCare.png',
+      logo: '/image/sponsors/dogCare.png',
     },
     {
       id: 2,
       name: 'DogCare Products',
       description: 'Інноваційні продукти для догляду за собаками.',
-      logo: '/public/image/sponsors/happypaws.png',
+      logo: '/image/sponsors/happypaws.png',
     },
     {
       id: 3,
       name: 'HappyPaws Foundation',
       description: 'Фонд підтримки здоров\'я домашніх тварин.',
-      logo: "/public/image/sponsors/petFood.png",
+      logo: "/image/sponsors/petFood.png",
     },
     {
       id: 4,
       name: 'VetTech Innovations',
       description: 'Розробка сучасного ветеринарного обладнання.',
-      logo: '/public/image/sponsors/vettech.png',
+      logo: '/image/sponsors/vettech.png',
     },
     {
       id: 5,
       name: 'HealthyPaws Nutrition',
       description: 'Збалансоване харчування для собак.',
-      logo: '/public/image/sponsors/HealthyPaws.png',
+      logo: '/image/sponsors/HealthyPaws.png',
     },
     {
       id: 6,
       name: 'BarkBright Toys',
       description: 'Іграшки, які роблять собак щасливими.',
-      logo: '/public/image/Bark-Bright.png',
+      logo: '/image/sponsors/Bark-Bright.png',
     },
   ];
     const galleryImages = [

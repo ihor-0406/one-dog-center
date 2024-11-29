@@ -21,11 +21,11 @@ const grooming=()=>{
     }, []);
 
     const galleryImages = [
-      { id: 1, src: "/public/image/grooming01.jpg", alt:'Огляд собаки лікарям ' },
-      { id: 2, src: "/public/image/grooming02.jpg", alt:'Кабінет для огляду тварин' }, 
-      { id: 3, src: "/public/image/grooming03.jpg", alt: 'Операційне відділення' },
-      { id: 4, src: "/public/image/grooming05.jpg", alt: 'Приймальне відділення' },
-      { id: 5, src: "/public/image/grooming06.jpg", alt:  'Приймальне відділення'}
+      { id: 1, src: "/image/grooming01.jpg", alt:'Огляд собаки лікарям ' },
+      { id: 2, src: "/image/grooming02.jpg", alt:'Кабінет для огляду тварин' }, 
+      { id: 3, src: "/image/grooming03.jpg", alt: 'Операційне відділення' },
+      { id: 4, src: "/image/grooming05.jpg", alt: 'Приймальне відділення' },
+      { id: 5, src: "/image/grooming06.jpg", alt:  'Приймальне відділення'}
     ];
 
     const handleProfileRedirect = () => {

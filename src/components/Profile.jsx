@@ -7,7 +7,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import './profile.css';
+import '../styles/profile.css';
 
 const Profile = () => {
   const [avatar, setAvatar] = useState(null);

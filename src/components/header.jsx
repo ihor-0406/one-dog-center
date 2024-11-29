@@ -8,7 +8,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Подключение JS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Navbar, Nav, Offcanvas } from 'react-bootstrap';
 import { faPaw, faUser, faMagnifyingGlass, faBell, faTrash,faHouse , faFlask, faHouseChimneyMedical, faHeadset, faHeart } from '@fortawesome/free-solid-svg-icons';
-import './header.css';
+import '../styles/header.css';
 
 const Header = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);

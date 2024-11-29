@@ -119,11 +119,11 @@ const Veterinary = () => {
   };
 
   const galleryImages = [
-    { id: 1, src: "/public/image/center1.jpg", alt:'Огляд собаки лікарям ' },
-    { id: 2, src: "/public/image/center2.jpg", alt:'Кабінет для огляду тварин' }, 
-    { id: 3, src: "/public/image/center3.jpg", alt: 'Операційне відділення' },
-    { id: 4, src: "/public/image/center4.webp", alt: 'Приймальне відділення' },
-    { id: 5, src: "/public/image/center5.jpg", alt:  'Приймальне відділення'}
+    { id: 1, src: "/image/center1.jpg", alt:'Огляд собаки лікарям ' },
+    { id: 2, src: "/image/center2.jpg", alt:'Кабінет для огляду тварин' }, 
+    { id: 3, src: "/image/center3.jpg", alt: 'Операційне відділення' },
+    { id: 4, src: "/image/center4.webp", alt: 'Приймальне відділення' },
+    { id: 5, src: "/image/center5.jpg", alt:  'Приймальне відділення'}
   ];
   
 

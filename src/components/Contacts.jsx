@@ -4,7 +4,7 @@ import { faPhone, faEnvelope, faMapMarkerAlt } from '@fortawesome/free-solid-svg
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../config/firebaseConfig';
-import './Contacts.css';
+import '../styles/Contacts.css';
 
 const Contacts = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });

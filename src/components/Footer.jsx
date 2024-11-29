@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Footer.css';
+import '../styles/Footer.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
@@ -9,17 +9,17 @@ const Footer = () => {
     {
       id: 1,
       name: 'BarkBright Toys',
-      logo: '/public/image/sponsors/Bark-Bright.png',
+      logo: '/image/sponsors/Bark-Bright.png',
     },
     {
       id: 2,
       name: 'HealthyPaws Nutrition',
-      logo: '/public/image/sponsors/HealthyPaws.png',
+      logo: '/image/sponsors/HealthyPaws.png',
     },
     {
       id: 3,
       name: 'VetTech Innovations',
-      logo: '/public/image/sponsors/vettech.png',
+      logo: '/image/sponsors/vettech.png',
     },
   ];
 
