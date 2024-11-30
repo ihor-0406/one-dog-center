@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../config/firebaseConfig';
+import { collection, addDoc, getDocs, deleteDoc, doc, query, where } from 'firebase/firestore';
+import { db, auth } from '../config/firebaseConfig';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faPlus, faSave } from '@fortawesome/free-solid-svg-icons';
 
 const Achievements = () => {
   const [achievements, setAchievements] = useState([]); // Список досягнень
@@ -13,13 +15,16 @@ const Achievements = () => {
   });
   const [errorMessage, setErrorMessage] = useState(''); // Повідомлення про помилку
 
+  const userId = auth.currentUser?.uid; // Ідентифікатор користувача
   const achievementsCollection = collection(db, 'achievements'); // Колекція в Firebase
 
   // Завантаження досягнень з Firestore
   useEffect(() => {
     const fetchAchievements = async () => {
+      if (!userId) return;
       try {
-        const querySnapshot = await getDocs(achievementsCollection);
+        const q = query(achievementsCollection, where('userId', '==', userId));
+        const querySnapshot = await getDocs(q);
         const achievementsList = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
@@ -31,7 +36,7 @@ const Achievements = () => {
     };
 
     fetchAchievements();
-  }, []);
+  }, [userId]);
 
   // Обробник зміни полів форми
   const handleInputChange = (e) => {
@@ -58,7 +63,7 @@ const Achievements = () => {
         return;
       }
 
-      const docRef = await addDoc(achievementsCollection, newAchievement); // Збереження у Firestore
+      const docRef = await addDoc(achievementsCollection, { ...newAchievement, userId }); // Додаємо userId
       setAchievements([...achievements, { ...newAchievement, id: docRef.id }]); // Оновлення стану
       setFormVisible(false); // Приховуємо форму після додавання
       setNewAchievement({ title: '', description: '', date: '', image: null }); // Скидаємо поля форми
@@ -100,19 +105,19 @@ const Achievements = () => {
               <h5 className="card-title text-success">{achievement.title}</h5>
               <p><strong>Опис:</strong> {achievement.description}</p>
               <p><strong>Дата:</strong> {achievement.date}</p>
-              <button
-                className="btn btn-danger mt-2"
+              <button className="btn btn-danger mt-2"
                 onClick={() => handleDelete(achievement.id)}
               >
-                Видалити
+                <FontAwesomeIcon icon={faTrash} />
               </button>
             </div>
           </div>
         ))}
       </div>
 
+      {/* Кнопка для відкриття форми */}
       <button className="btn btn-primary mt-4" onClick={() => setFormVisible(!formVisible)}>
-      Додати досягнення
+        <FontAwesomeIcon icon={faPlus} /> Додати досягнення
       </button>
 
       {/* Форма додавання досягнення */}
@@ -162,7 +167,9 @@ const Achievements = () => {
               className="form-control"
             />
           </div>
-          <button type="submit" className="btn btn-success w-100">Зберегти досягнення</button>
+          <button type="submit" className="btn btn-success w-100">
+            <FontAwesomeIcon icon={faSave} /> Зберегти досягнення
+          </button>
         </form>
       )}
     </div>

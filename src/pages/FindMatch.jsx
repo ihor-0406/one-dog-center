@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../config/firebaseConfig';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db, auth } from '../config/firebaseConfig';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import './FindMatch.css';
@@ -22,24 +22,58 @@ const FindMatch = () => {
   const [currentMatchIndex, setCurrentMatchIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isCardLoading, setIsCardLoading] = useState(false);
+  const [userName, setUserName] = useState(''); // Ім'я користувача
 
+  const userId = auth.currentUser?.uid;
+
+  // Завантаження імені користувача
+  useEffect(() => {
+    const fetchUserName = async () => {
+      if (!userId) return;
+    
+      try {
+        const usersCollection = collection(db, 'users');
+        const userQuery = query(usersCollection, where('uid', '==', userId)); 
+        const userSnapshot = await getDocs(userQuery);
+    
+        if (userSnapshot.empty) {
+          console.error('Дані користувача не знайдено в Firebase!');
+          setUserName('Користувач');
+          return;
+        }
+    
+        const userData = userSnapshot.docs[0].data();
+        console.log('Завантажено дані користувача:', userData);
+        setUserName(userData?.name || 'Користувач'); 
+      } catch (error) {
+        console.error('Помилка при завантаженні імені користувача:', error);
+      }
+    };
+
+    fetchUserName();
+  }, [userId]);
+
+  // Завантаження улюбленців
   useEffect(() => {
     const fetchUserPets = async () => {
+      if (!userId) return;
+
       try {
         const petsCollection = collection(db, 'pets');
-        const petsSnapshot = await getDocs(petsCollection);
+        const petsQuery = query(petsCollection, where('userId', '==', userId));
+        const petsSnapshot = await getDocs(petsQuery);
         const petsList = petsSnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
         setUserPets(petsList);
       } catch (error) {
-        console.error('Ошибка при загрузке питомцев из Firebase:', error);
+        console.error('Помилка при завантаженні улюбленців з Firebase:', error);
       }
     };
 
     fetchUserPets();
-  }, []);
+  }, [userId]);
 
   const generateMatches = async () => {
     if (!selectedPet) return;
@@ -76,7 +110,7 @@ const FindMatch = () => {
       setPotentialMatches(matches);
       setCurrentMatchIndex(0);
     } catch (error) {
-      console.error('Ошибка при генерации пар:', error);
+      console.error('Помилка при генерації пар:', error);
     } finally {
       setIsLoading(false);
     }
@@ -110,11 +144,11 @@ const FindMatch = () => {
 
   const handleContactOwner = () => {
     const match = potentialMatches[currentMatchIndex];
-    const subject = `Запит на договір про в'язку з вашим улюбленцем`;
+    const subject = "Запит на договір про в'язку з вашим улюбленцем";
     const body = `
 Доброго дня!
 
-Мене звати ${selectedPet.name}. Я зацікавлений у можливості в'язки з вашим улюбленцем, ${match.name}.
+Мене звати ${userName}. Я зацікавлений у можливості в'язки з вашим улюбленцем, ${match.name}.
 Ваш улюбленець:
 - Порода: ${match.breed}
 - Вік: ${match.age} років
@@ -127,7 +161,8 @@ const FindMatch = () => {
 
 Будь ласка, зв'яжіться зі мною для обговорення деталей.
 
-З найкращими побажаннями,[Ваше ім'я/номер телефону]
+З найкращими побажаннями,
+${userName}
 `;
     window.location.href = `mailto:${match.owner.email}?subject=${encodeURIComponent(
       subject

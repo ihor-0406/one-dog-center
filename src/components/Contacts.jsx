@@ -43,7 +43,6 @@ const Contacts = () => {
         <section className="container py-5">
             <h2 className="text-primary mb-4">Контакти</h2>
             <div className="row">
-                {/* Контактная информация */}
                 <div className="col-md-6">
                     <h4 className="mb-3">Зв'яжіться з нами</h4>
                     <ul className="list-unstyled">
@@ -77,9 +76,7 @@ const Contacts = () => {
                         </a>
                     </div>
                 </div>
-
-                {/* Форма обратной связи */}
-                <div className="col-md-6 rounded-4 alertBlock">
+                <div className="col-md-6 rounded-4 mt-sm-2 alertBlock">
                     <h4 className="mb-3">Напишіть нам</h4>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
@@ -124,8 +121,6 @@ const Contacts = () => {
                     </form>
                 </div>
             </div>
-
-            {/* Карта */}
             <div className="row mt-5">
                 <div className="col-12">
                     <h4 className="mb-4 text-primary">Наше місцезнаходження:</h4>

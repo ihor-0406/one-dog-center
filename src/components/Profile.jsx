@@ -141,7 +141,7 @@ const Profile = () => {
     return (
       <div className="d-flex justify-content-center align-items-center vh-100">
         <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Загрузка...</span>
+          <span className="visually-hidden">Завантаження...</span>
         </div>
       </div>
     );
@@ -233,15 +233,12 @@ const Profile = () => {
         <div className="tab-content mt-3">
           {isMainProfile ? (
             <div>
-              {/* Основная информация профиля */}
             </div>
           ) : (
             <Outlet />
           )}
         </div>
       </div>
-
-      {/* Модальное окно подтверждения удаления */}
       {showDeleteModal && (
         <div className="modal show d-block" role="dialog">
           <div className="modal-dialog modal-dialog-centered">

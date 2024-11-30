@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../config/firebaseConfig';
-import { collection, addDoc, deleteDoc, doc, getDocs } from 'firebase/firestore';
-import "./Pet.css"
+import { db, auth } from '../config/firebaseConfig';
+import { collection, addDoc, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore';
+import './Pet.css';
 
 const Pet = () => {
   const [breeds, setBreeds] = useState([]);
   const [formVisible, setFormVisible] = useState(false);
-  const [pets, setPets] = useState([]); // Массив для хранения питомцев из базы данных
+  const [pets, setPets] = useState([]);
   const [newPet, setNewPet] = useState({
     name: '',
     birthYear: '',
@@ -17,66 +17,84 @@ const Pet = () => {
     height: '',
     weight: '',
     specialFeatures: '',
-    image: null
+    image: null,
   });
 
   const colors = ['Білий', 'Чорний', 'Коричневий', 'Сірий', 'Рудий', 'Плямистий', 'Триколірний'];
 
-  // Загрузка данных пород собак из API и питомцев из Firebase
+  // Завантажуємо данні пород собак і улюбленців користовача 
   useEffect(() => {
-    fetch('https://api.thedogapi.com/v1/breeds')
-      .then(response => response.json())
-      .then(data => {
+    const fetchBreeds = async () => {
+      try {
+        const response = await fetch('https://api.thedogapi.com/v1/breeds');
+        const data = await response.json();
         setBreeds(data);
-      })
-      .catch(error => console.error('Помилка при завантаженні даних про породи:', error));
-
-    const fetchPets = async () => {
-      const querySnapshot = await getDocs(collection(db, 'pets'));
-      const petsData = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-      setPets(petsData);
+      } catch (error) {
+        console.error('Помилка при завантаженні даних про породи:', error);
+      }
     };
 
+    const fetchPets = async () => {
+      const user = auth.currentUser;
+      if (!user) return;
+
+      try {
+        const petsQuery = query(collection(db, 'pets'), where('userId', '==', user.uid));
+        const petsSnapshot = await getDocs(petsQuery);
+        const petsList = petsSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setPets(petsList);
+      } catch (error) {
+        console.error('Помилка при завантаженні улюбленців:', error);
+      }
+    };
+
+    fetchBreeds();
     fetchPets();
   }, []);
 
-  // Функция для добавления уведомлений
-  const addNotification = async (message) => {
-    try {
-      await addDoc(collection(db, 'notifications'), {
-        message,
-        isRead: false,
-        timestamp: new Date().toISOString(),
-      });
-    } catch (error) {
-      console.error('Ошибка при добавлении уведомления:', error);
-    }
-  };
-
-  // Обработчик изменения полей формы
+  // Обробник зміни полів форми
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setNewPet({ ...newPet, [name]: type === 'checkbox' ? checked : value });
   };
 
-  // Обработчик загрузки изображения
+  // Обробник завантаження зображення
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setNewPet((prevPet) => ({ ...prevPet, image: reader.result }));
-    };
-    reader.readAsDataURL(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setNewPet((prevPet) => ({ ...prevPet, image: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
-  // Обработчик отправки формы
+  // Обробник відправки форми
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const user = auth.currentUser;
+
+    if (!user) {
+      alert('Будь ласка, увійдіть у систему, щоб додати улюбленця.');
+      return;
+    }
+
+    if (!newPet.name , !newPet.breed,  !newPet.birthYear) {
+      alert('Будь ласка, заповніть усі обов’язкові поля.');
+      return;
+    }
+
     try {
-      // Добавляем питомца в Firestore
-      const docRef = await addDoc(collection(db, 'pets'), newPet);
-      setPets([...pets, { ...newPet, id: docRef.id }]); // Добавляем нового питомца в состояние
-      setFormVisible(false); // Скрыть форму после создания питомца
+      const docRef = await addDoc(collection(db, 'pets'), {
+        ...newPet,
+        userId: user.uid,
+      });
+      setPets([...pets, { ...newPet, id: docRef.id }]);
+      setFormVisible(false);
       setNewPet({
         name: '',
         birthYear: '',
@@ -87,29 +105,26 @@ const Pet = () => {
         height: '',
         weight: '',
         specialFeatures: '',
-        image: null
+        image: null,
       });
-
-      // Добавляем уведомление о новом питомце
-      await addNotification(`Новий питомец "${newPet.name}" був успішно доданий`);
     } catch (error) {
-      console.error('Ошибка при добавлении питомца:', error);
+      console.error('Помилка при додаванні улюбленця:', error);
     }
   };
 
-  // Обработчик удаления питомца
+  // Обробник відалення улюбленця
   const handleDeletePet = async (petId) => {
     try {
-      await deleteDoc(doc(db, 'pets', petId)); // Удаляем питомца из Firestore
-      setPets(pets.filter(pet => pet.id !== petId)); // Обновляем состояние, удаляя питомца из списка
+      await deleteDoc(doc(db, 'pets', petId));
+      setPets(pets.filter((pet) => pet.id !== petId));
     } catch (error) {
-      console.error('Ошибка при удалении питомца:', error);
+      console.error('Помилка при видаленні улюбленця:', error);
     }
   };
 
   return (
     <div className='bgPet'>
-      <h2>Питомці</h2> {/* Карточки с информацией о питомцах */}
+      <h2>Питомці</h2> 
       <div className="d-flex flex-wrap ms-3">
         {pets.map((pet) => (
           <div key={pet.id} className="card mb-3 me-3" style={{ width: '18rem' }}>

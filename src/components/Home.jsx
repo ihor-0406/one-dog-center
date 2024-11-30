@@ -13,7 +13,6 @@ import '../styles/Home.css';
 import saveIMG from "/image/saveBlock.jpg";
 import post1 from "/image/post1.jpg";
 import post2 from "/image/post2.jpg";
-// import newsDog from "/image/imageAmimal.png"
 
 
 function Home() {
@@ -32,7 +31,7 @@ function Home() {
     "Мій собака завжди щасливий після візиту сюди. Дякую за вашу роботу!"
   ];
 
-  // Функция для обновления таймера
+  // таймер
   const updateTimer = () => {
     const targetDate = new Date(new Date().getFullYear(), 11, 23, 0, 0, 0); // 23 декабря текущего года
     const now = new Date();
@@ -51,7 +50,7 @@ function Home() {
     }
   };
 
-  // useEffect для запуска таймера
+  //запуск таймера
   useEffect(() => {
     const interval = setInterval(() => {
       updateTimer();
@@ -60,24 +59,22 @@ function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  // useEffect для случайного отзыва (генерация один раз при загрузке)
+
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * reviewTexts.length);
     setRandomReview(reviewTexts[randomIndex]);
-  }, []); // Генерируем отзыв только один раз
+  }, []); 
 
   useEffect(() => {
     const createSnowflake = () => {
       const snowflake = document.createElement("div");
       snowflake.classList.add("snowflake");
 
-      // Случайное положение и стили снежинки
       snowflake.style.left = `${Math.random() * 100}%`;
       snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`;
       snowflake.style.opacity = `${Math.random() * 0.5 + 0.5}`;
       snowflake.style.fontSize = `${Math.random() * 20 + 20}px`;
 
-      // Находим контейнер для снежинок
       const container = document.querySelector(".show-container");
       if (container) {
         container.appendChild(snowflake);
@@ -88,7 +85,6 @@ function Home() {
       }, 5000);
     };
 
-    // Запуск интервала для создания снежинок
     const interval = setInterval(createSnowflake, 200);
 
     return () => clearInterval(interval);
@@ -118,7 +114,7 @@ function Home() {
       }
     });
   };
-        const descriptions = {
+const descriptions = {
             labrador: "Лабрадор — відданий, розумний та енергійний собака, ідеально підходить для сімейного життя.",
             german_shepherd: "Німецька вівчарка — сміливий, надійний і високорозумний захисник.",
             bulldog: "Бульдог — спокійний і люблячий компаньйон, який добре адаптується до квартирного життя.",
@@ -166,22 +162,20 @@ function Home() {
             shar_pei: "Шарпей — унікальний собака з глибокими складками і відданим характером.",
             boston_terrier: "Бостон тер'єр — маленький і елегантний собака з веселою натурою.",
             cavalier_king_charles_spaniel: "Кавалер кінг чарльз спанієль — люблячий і ніжний собака, ідеальний для сімейного життя.",
-          };
-
-            const [dogBreedsWithImages, setDogBreedsWithImages] = useState([]);
-            const [loading, setLoading] = useState(true);
-            const [error, setError] = useState(null);
+ };
+   const [dogBreedsWithImages, setDogBreedsWithImages] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
           
-            useEffect(() => {
-              const fetchDogBreeds = async () => {
-                try {
-                  const response = await fetch("https://dog.ceo/api/breeds/list/all");
-                  const breedData = await response.json();
-                  const allBreeds = Object.keys(breedData.message);
+    useEffect(() => {
+     const fetchDogBreeds = async () => {
+         try {
+           const response = await fetch("https://dog.ceo/api/breeds/list/all");
+           const breedData = await response.json();
+           const allBreeds = Object.keys(breedData.message);
           
-                  // Отбираем только тех собак, которые есть в массиве descriptions
-                  const filteredBreeds = allBreeds.filter((breed) =>
-                    descriptions.hasOwnProperty(breed)
+           const filteredBreeds = allBreeds.filter((breed) =>
+           descriptions.hasOwnProperty(breed)
                   );
           
                   const dogBreeds = await Promise.all(
@@ -291,8 +285,6 @@ function Home() {
                     </div>
                 </div>
             </div>
-
-            {/* Блок для запису на прийом */}
             <div className="container py-5 ">
                 <div className="p-2 mb-4 bg-light rounded-3 shadow appointment">
                     <div className="container-fluid py-5">
@@ -396,7 +388,6 @@ function Home() {
                 </div>
             </div>
         </div>
-            {/* Блок із відгуками */}
             <div className="reviews-section mt-5">
                 <Swiper
                     modules={[Navigation, Pagination]}
@@ -413,7 +404,6 @@ function Home() {
                     {users.map((user, index) => (
                         <SwiperSlide key={index}>
                             <div className="card h-100 shadow-sm review-card cardWiper">
-                                {/* Аватар */}
                                 <img
                                     src={user.picture.large}
                                     alt={`${user.name.first} ${user.name.last}`}

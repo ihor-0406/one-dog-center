@@ -1,25 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { db } from '../config/firebaseConfig';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
+import { db, auth } from '../config/firebaseConfig';
+import { collection, getDocs, addDoc, query, where, deleteDoc } from 'firebase/firestore';
 import './Album.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner, faPlus, faSave, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const PhotoAlbum = () => {
   const [pets, setPets] = useState([]);
   const [images, setImages] = useState({});
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImagePetName, setSelectedImagePetName] = useState(null); // Для видалення фото
   const [formVisible, setFormVisible] = useState(false);
   const [newPhoto, setNewPhoto] = useState({ petName: '', image: null });
-  const [serverPhotos, setServerPhotos] = useState({}); // Фотографії з сервера
-
+  const [serverPhotos, setServerPhotos] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const API_KEY = 'live_NFZa4o8wnv9u1dpiH7CdcpHXIy5dY5HJvKR8QoJuy3CyEL2pI29ezsZ5V235NRFA';
 
-  // Завантаження улюбленців з Firebase
+  const userId = auth.currentUser?.uid;
+
   useEffect(() => {
     const fetchPets = async () => {
+      if (!userId) return;
       try {
+        setIsLoading(true);
         const petsCollection = collection(db, 'pets');
-        const petsSnapshot = await getDocs(petsCollection);
+        const petsQuery = query(petsCollection, where('userId', '==', userId));
+        const petsSnapshot = await getDocs(petsQuery);
         const petsList = petsSnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -27,44 +34,20 @@ const PhotoAlbum = () => {
         setPets(petsList);
       } catch (error) {
         console.error('Помилка завантаження улюбленців:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
-
     fetchPets();
-  }, []);
+  }, [userId]);
 
-  // Завантаження фото з API The Dog
-  useEffect(() => {
-    const fetchDogImages = async () => {
-      try {
-        const newImages = {};
-
-        for (const pet of pets) {
-          if (pet.breed) {
-            const response = await axios.get(`
-              https://api.thedogapi.com/v1/images/search?limit=5&api_key=${API_KEY}&q=${encodeURIComponent(pet.breed)}
-            `);
-            newImages[pet.name] = response.data.map((img) => img.url);
-          }
-        }
-
-        setImages(newImages);
-      } catch (error) {
-        console.error('Помилка завантаження фото з API The Dog:', error);
-      }
-    };
-
-    if (pets.length > 0) {
-      fetchDogImages();
-    }
-  }, [pets]);
-
-  // Завантаження фотографій з сервера Firebase
   useEffect(() => {
     const fetchServerPhotos = async () => {
+      if (!userId) return;
       try {
         const photosCollection = collection(db, 'photos');
-        const photosSnapshot = await getDocs(photosCollection);
+        const photosQuery = query(photosCollection, where('userId', '==', userId));
+        const photosSnapshot = await getDocs(photosQuery);
         const photosList = photosSnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -84,9 +67,8 @@ const PhotoAlbum = () => {
     };
 
     fetchServerPhotos();
-  }, []);
+  }, [userId]);
 
-  // Обробник завантаження фото
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -96,7 +78,6 @@ const PhotoAlbum = () => {
     reader.readAsDataURL(file);
   };
 
-  // Обробник додавання нового фото
   const handleAddPhoto = async (e) => {
     e.preventDefault();
     try {
@@ -105,17 +86,14 @@ const PhotoAlbum = () => {
         return;
       }
 
-      // Додавання фото у Firebase
       const photosCollection = collection(db, 'photos');
-      await addDoc(photosCollection, newPhoto);
+      await addDoc(photosCollection, { ...newPhoto, userId });
 
-      // Оновлення локального стану
       setServerPhotos((prevPhotos) => ({
         ...prevPhotos,
         [newPhoto.petName]: [...(prevPhotos[newPhoto.petName] || []), newPhoto.image],
       }));
 
-      // Скидання форми
       setNewPhoto({ petName: '', image: null });
       setFormVisible(false);
     } catch (error) {
@@ -123,44 +101,78 @@ const PhotoAlbum = () => {
     }
   };
 
+  const handleDeletePhoto = async (petName, imageUrl) => {
+    console.log("Видаляємо фото для улюбленця:", petName, "URL:", imageUrl);
+    try {
+      const photosCollection = collection(db, 'photos');
+      const photosQuery = query(
+        photosCollection,
+        where('userId', '==', userId),
+        where('petName', '==', petName),
+        where('image', '==', imageUrl)
+      );
+      const photosSnapshot = await getDocs(photosQuery);
+  
+      if (photosSnapshot.empty) {
+        console.error("Документів для видалення не знайдено!");
+        return;
+      }
+  
+      photosSnapshot.forEach(async (doc) => {
+        await deleteDoc(doc.ref);
+        console.log("Документ видалено:", doc.ref.id);
+      });
+  
+      setServerPhotos((prevPhotos) => {
+        const updatedPhotos = { ...prevPhotos };
+        updatedPhotos[petName] = updatedPhotos[petName].filter((url) => url !== imageUrl);
+        return updatedPhotos;
+      });
+  
+      setSelectedImage(null);
+      setSelectedImagePetName(null);
+      console.log('Фото успішно видалено');
+    } catch (error) {
+      console.error('Помилка видалення фото:', error);
+    }
+  };
+
   return (
     <div className="photo-album bgPet">
-      <h2>Фотоальбом</h2>
+      <h2 className="album-title">Фотоальбом</h2>
 
-      {/* Відображення фото по улюбленцях */}
-      <div className="pets-photos">
-        {pets.map((pet) => (
-          <div key={pet.id} className="pet-photos-section">
-            <h3>{pet.name}</h3>
-            <div className="photo-grid">
-              {/* Фото з сервера */}
-              {serverPhotos[pet.name]?.map((url, index) => (
-                <img
-                  key={index}
-                  src={url}
-                  alt={`${pet.name} фото з сервера`}
-                  className="photo-thumbnail"
-                  onClick={() => setSelectedImage(url)}
-                />
-              ))}
-              {/* Фото з API */}
-              {images[pet.name]?.map((url, index) => (
-                <img
-                  key={index}
-                  src={url}
-                  alt={`${pet.name} фото з API`}
-                  className="photo-thumbnail"
-                  onClick={() => setSelectedImage(url)}
-                />
-              ))}
+      {isLoading ? (
+        <div className="loading-spinner">
+          <FontAwesomeIcon icon={faSpinner} spin size="3x" />
+          <p>Завантаження...</p>
+        </div>
+      ) : (
+        <div className="pets-photos">
+          {pets.map((pet) => (
+            <div key={pet.id} className="pet-photos-section">
+              <h3>{pet.name}</h3>
+              <div className="photo-grid">
+                {serverPhotos[pet.name]?.map((url, index) => (
+                  <div key={index} className="photo-thumbnail-wrapper">
+                    <img
+                      src={url}
+                      alt={`Фото ${pet.name}`}
+                      className="photo-thumbnail"
+                      onClick={() => {
+                        setSelectedImage(url);
+                        setSelectedImagePetName(pet.name);
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
-      {/* Додавання нового фото */}
-      <button className="btn btn-primary" onClick={() => setFormVisible(!formVisible)}>
-        Додати нове фото
+      <button className="btn btn-primary add-photo-button" onClick={() => setFormVisible(!formVisible)}>
+        <FontAwesomeIcon icon={faPlus} /> Додати нове фото
       </button>
 
       {formVisible && (
@@ -185,20 +197,27 @@ const PhotoAlbum = () => {
             <input type="file" accept="image/*" className="form-control" onChange={handleImageUpload} />
           </div>
           <button type="submit" className="btn btn-success">
-            Зберегти фото
+            <FontAwesomeIcon icon={faSave} /> Зберегти фото
           </button>
         </form>
       )}
 
-      {/* Відображення вибраного фото */}
       {selectedImage && (
         <div className="photo-viewer">
           <div className="photo-viewer-overlay" onClick={() => setSelectedImage(null)}></div>
           <div className="photo-viewer-content">
             <img src={selectedImage} alt="Перегляд фото" className="photo-viewer-image" />
-            <button className="photo-viewer-close" onClick={() => setSelectedImage(null)}>
-              Закрити
-            </button>
+            <div className="photo-viewer-controls">
+              <button
+                className="btn btn-danger delete-photo-button"
+                onClick={() => handleDeletePhoto(selectedImagePetName, selectedImage)}
+              >
+                <FontAwesomeIcon icon={faTrash} /> 
+              </button>
+              <button className="btn btn-secondary close-photo-button" onClick={() => setSelectedImage(null)}>
+                <FontAwesomeIcon icon={faTimes} /> 
+              </button>
+            </div>
           </div>
         </div>
       )}

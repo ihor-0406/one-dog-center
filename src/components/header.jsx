@@ -20,22 +20,19 @@ const Header = () => {
     const notificationsRef = useRef(null);
     const navigate = useNavigate();
 
-    // Firebase коллекция уведомлений
+    // повідомлення
     const notificationsCollection = collection(db, 'notifications');
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             setIsLoggedIn(!!user);
             if (user) {
-                // Проверяем, не было ли уже уведомления о входе
                 const hasLoggedInNotification = localStorage.getItem('loggedInNotification');
                 if (!hasLoggedInNotification) {
                     await addNotification('Ви успішно увійшли в систему');
-                    // Помечаем, что уведомление уже было отправлено
                     localStorage.setItem('loggedInNotification', 'true');
                 }
             } else {
-                // Убираем флаг, если пользователь вышел
                 localStorage.removeItem('loggedInNotification');
             }
         });
@@ -114,7 +111,7 @@ const Header = () => {
 
     const toggleSearch = () => {
         setIsSearchOpen(!isSearchOpen);
-        setSearchResults([]); // Скидуємо панель пошука
+        setSearchResults([]); 
     };
 
     const toggleNotifications = () => {
@@ -139,7 +136,6 @@ const Header = () => {
         <>
             <header className="container header">
                 <nav className="row d-flex justify-content-between align-items-center">
-                    {/* Меню */}
                     <Navbar bg="light" expand={false} className="col-1 ms-3 ">
             <Navbar.Toggle
                 aria-controls="offcanvasNavbar"
@@ -209,7 +205,6 @@ const Header = () => {
                 </Offcanvas.Body>
             </Navbar.Offcanvas>
         </Navbar>
-                    {/* Логотип */}
                     <div className="logo col-auto d-flex align-items-center justify-content-center mt-1">
                         <Link className="navbar-brand text-white" to="/"><h2 className="poppins-semibold fw-medium logoOnegog mb-0">
                                 One
@@ -220,8 +215,6 @@ const Header = () => {
                             </h2>
                         </Link>
                     </div>
-
-                    {/* Панель користувача */}
                     <div className="user-panel col-auto d-flex justify-content-end align-items-center gap-2">
                         {isLoggedIn ? (
                             <>
@@ -301,8 +294,6 @@ const Header = () => {
                     </div>
                 </nav>
             </header>
-
-            {/* Поиск */}
             {isSearchOpen && (
                 <div className="container search-bar mt-3">
                     <form onSubmit={handleSearch}>

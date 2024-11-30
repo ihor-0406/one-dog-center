@@ -67,8 +67,6 @@
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-
-/* Зменшення масштабу карток */
 .cardWiper {
     width: 90%; 
     margin: 0 auto; 
@@ -76,34 +74,26 @@
     border: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .cardWiper:hover {
     transform: scale(0.9); 
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
-
 .card-img-top {
     border: 2px solid #eee;
 }
 
-/* Розмір аватару */
 .card-img-top {
     width: 60px; 
     height: 60px; 
 }
-
-/* Рейтинг і текст */
 .review-rating {
     margin-top: 10px;
 }
-
 .card-text {
     font-size: 0.85rem; 
     font-style: italic;
     color: #555;
 }
-
-/*  */
 .bg-light {
     background-color: rgba(238, 5, 5, 0.005)!important; 
 }
@@ -111,27 +101,22 @@
 .text-primary {
     color: rgb(7, 133, 80) !important; 
 }
-
 .btn-primary {
     background-color: rgb(7, 133, 80);
     border: none;
     transition: background-color 0.3s ease-in-out;
 }
-
 .btn-primary:hover {
     background-color: rgb(5, 93, 61);
 }
-
 .btn-success {
     background-color: rgb(40, 167, 69);
     border: none;
     transition: background-color 0.3s ease-in-out;
 }
-
 .btn-success:hover {
     background-color: rgb(30, 126, 52);
 }
-
 .shadow {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -297,13 +282,11 @@
     position: relative;
     z-index: 1;
 }
-/* Основний контейнер з двома колонками */
 .containerNews {
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.805);
 }
 
-/* Колонка з новинами */
 .dogsInfo{
     max-height: 700px;
     overflow-y: auto; 
@@ -319,8 +302,6 @@
     margin: 50px;
     font-weight: bold;
 }
-
-/* Колонка з питаннями та відповідями */
 .info-column {
     max-height: 815px;
     overflow-y: auto;

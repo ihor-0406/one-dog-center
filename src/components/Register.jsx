@@ -13,6 +13,7 @@ const countryCodes = [
     { code: '+1', label: 'US' },
     { code: '+44', label: 'UK' },
     { code: '+49', label: 'DE' },
+    { code: '+48', label: 'PL' }
 ];
 
 const Register = () => {
@@ -21,7 +22,7 @@ const Register = () => {
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [phone, setPhone] = useState('');
-    const [countryCode, setCountryCode] = useState('+38'); // Код страны по умолчанию
+    const [countryCode, setCountryCode] = useState('+38'); 
     const [nickname, setNickname] = useState('');
 
     const [emailError, setEmailError] = useState('');
@@ -43,7 +44,7 @@ const Register = () => {
     };
 
     const isValidPhone = (phone) => {
-        const phoneRegex = /^\d{8}$/; // Проверка, что номер состоит из 8 цифр (без кода страны)
+        const phoneRegex = /^\d{10}$/; 
         return phoneRegex.test(phone);
     };
 
@@ -73,7 +74,7 @@ const Register = () => {
         }
 
         if (!isValidPhone(phone)) {
-            setPhoneError('Невірний номер телефону. Введіть номер з 8 цифр.');
+            setPhoneError('Невірний номер телефону. Введіть номер з 10 цифр.');
             return;
         }
 
@@ -161,7 +162,7 @@ const Register = () => {
                                 onChange={(e) => setPhone(e.target.value)}
                                 required
                                 className="form-control"
-                                placeholder="XXXXXXXXXX" // Подсказка для ввода номера без кода страны
+                                placeholder="XXXXXXXXXX" 
                             />
                         </div>
                         {phoneError && <p className="text-danger">{phoneError}</p>}

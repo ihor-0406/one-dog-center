@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { uk } from 'date-fns/locale';
-import { db } from '../config/firebaseConfig';
+import { db, auth } from '../config/firebaseConfig';
 import { collection, getDocs, addDoc, deleteDoc, doc, query, where } from 'firebase/firestore';
 import vetsData from '../data/vets.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,7 +15,6 @@ registerLocale('uk', uk);
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-// Объект перевода типов специалистов
 const specialistTypeTranslations = {
   vet: 'Ветеринар',
   kynologist: 'Кінолог',
@@ -39,12 +38,15 @@ const History = () => {
     ...vetsData.groomingSpecialists.map((groomer) => ({ ...groomer, type: 'grooming' })),
   ];
 
-  // Загружаем питомцев
+  // Завантаження улюбленців
   useEffect(() => {
     const fetchPets = async () => {
+      const user = auth.currentUser;
+      if (!user) return;
+
       try {
-        const petsCollection = collection(db, 'pets');
-        const petsSnapshot = await getDocs(petsCollection);
+        const petsQuery = query(collection(db, 'pets'), where('userId', '==', user.uid));
+        const petsSnapshot = await getDocs(petsQuery);
         const petsList = petsSnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -58,12 +60,15 @@ const History = () => {
     fetchPets();
   }, []);
 
-  // Загружаем записи
+  // Завантаження записів
   useEffect(() => {
     const fetchAppointments = async () => {
+      const user = auth.currentUser;
+      if (!user) return;
+
       try {
-        const appointmentsCollection = collection(db, 'appointments');
-        const appointmentsSnapshot = await getDocs(appointmentsCollection);
+        const appointmentsQuery = query(collection(db, 'appointments'), where('userId', '==', user.uid));
+        const appointmentsSnapshot = await getDocs(appointmentsQuery);
         const appointmentsList = appointmentsSnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -77,7 +82,7 @@ const History = () => {
     fetchAppointments();
   }, []);
 
-  // Загружаем данные роста и веса
+  // Завантадення данних ваги та зросту
   useEffect(() => {
     const fetchGrowthData = async () => {
       if (selectedPetForChart) {
@@ -95,15 +100,34 @@ const History = () => {
     fetchGrowthData();
   }, [selectedPetForChart]);
 
+  // Фільтр дати та часу
   const filterDate = (date) => {
     const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0); 
 
     if (date < today || !selectedSpecialist) return false;
 
     const specialist = allSpecialists.find((spec) => spec.id === selectedSpecialist);
     const dayName = date.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
-    return specialist?.workingHours?.[dayName] ? true : false;
+
+    const workingHours = specialist?.workingHours?.[dayName];
+    if (!workingHours) return false;
+
+    const isDateBooked = appointments.some((appointment) => {
+      const appointmentDate = new Date(appointment.dateTime);
+
+      return (
+        appointmentDate.toLocaleDateString('en-US') === date.toLocaleDateString('en-US') &&
+        appointmentDate.getHours() === date.getHours() &&
+        appointmentDate.getMinutes() === date.getMinutes()
+      );
+    });
+
+    if (isDateBooked) {
+      return false;
+    }
+
+    return true; 
   };
 
   const filterTime = (time) => {
@@ -122,73 +146,106 @@ const History = () => {
       return date;
     });
 
+    const isTimeBooked = appointments.some((appointment) => {
+      const appointmentTime = new Date(appointment.dateTime);
+      return (
+        appointmentTime.toLocaleDateString('en-US') === appointmentDate.toLocaleDateString('en-US') &&
+        appointmentTime.getHours() === time.getHours() &&
+        appointmentTime.getMinutes() === time.getMinutes()
+      );
+    });
+
+    if (isTimeBooked) return false;
+
     return time >= start && time <= end;
   };
 
+  // Додавання записів
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!selectedSpecialist , !selectedPet , !appointmentDate) {
-      alert('Оберіть спеціаліста, улюбленця та дату.');
+    if (!selectedPet , !appointmentDate , !selectedSpecialist) {
+      alert('Будь ласка, виберіть тварину, дату та спеціаліста.');
+      return;
+    }
+    const user = auth.currentUser;
+    if (!user) {
+      return;
+    }
+
+    const appointmentDateISOString = appointmentDate.toISOString();
+    const existingAppointments = appointments.filter(
+      (app) => app.pet === selectedPet && app.dateTime === appointmentDateISOString
+    );
+
+    if (existingAppointments.length > 0) {
       return;
     }
 
     const newAppointment = {
       pet: selectedPet,
-      specialist: selectedSpecialist,
-      type: specialistType,
       dateTime: appointmentDate.toISOString(),
+      specialist: selectedSpecialist,
+      specialistType: specialistType,
+      userId: user.uid,
     };
-
+    
     try {
-      // Добавляем запись о приёме
       const docRef = await addDoc(collection(db, 'appointments'), newAppointment);
       setAppointments([...appointments, { id: docRef.id, ...newAppointment }]);
-
-      // Добавляем уведомление в коллекцию "notifications"
-      await addDoc(collection(db, 'notifications'), {
-        message: `Запис успішно створено для улюбленця ${selectedPet}`,
-        isRead: false,
-        timestamp: new Date(),
-      });
-
-      // Сбрасываем значения
-      setAppointmentDate(null);
-      setSelectedSpecialist('');
-      setSelectedPet('');
     } catch (error) {
-      console.error('Помилка при створенні запису:', error);
+      console.error('Помилка при додаванні запису:', error);
     }
+    await addDoc(collection(db, 'notifications'), {
+      message: `Запис успішно створено для Вашого улюбленця `,
+      isRead: false,
+      timestamp: new Date(),
+    });
   };
 
-  const handleAddGrowthRecord = async () => {
+  const handleDeleteAppointment = async (appointmentId) => {
+    const user = auth.currentUser;
+    if (!user) {
+      return;
+    }
+
     try {
-      const newRecord = { ...newGrowthRecord, pet: selectedPetForChart };
-      const docRef = await addDoc(collection(db, 'growthData'), newRecord);
-      setGrowthData([...growthData, { id: docRef.id, ...newRecord }]);
-      setNewGrowthRecord({ date: new Date(), weight: '', height: '' });
+      await deleteDoc(doc(db, 'appointments', appointmentId));
+      setAppointments(appointments.filter((appointment) => appointment.id !== appointmentId));
     } catch (error) {
-      console.error('Помилка при додаванні даних зросту:', error);
+      console.error('Помилка при видаленні запису:', error);
     }
   };
+  // Данні графика зросту та ваги
+const growthChartData = {
+  labels: growthData.map((data) => new Date(data.date).toLocaleDateString('uk-UA')),
+  datasets: [
+    {
+      label: 'Вага (кг)',
+      data: growthData.map((data) => data.weight),
+      borderColor: 'blue',
+      backgroundColor: 'blue',
+    },
+    {
+      label: 'Зріст (см)',
+      data: growthData.map((data) => data.height),
+      borderColor: 'green',
+      backgroundColor: 'green',
+    },
+  ],
+};
 
-  const growthChartData = {
-    labels: growthData.map((data) => new Date(data.date).toLocaleDateString('uk-UA')),
-    datasets: [
-      {
-        label: 'Вага (кг)',
-        data: growthData.map((data) => data.weight),
-        borderColor: 'blue',
-        backgroundColor: 'blue',
-      },
-      {
-        label: 'Зріст (см)',
-        data: growthData.map((data) => data.height),
-        borderColor: 'green',
-        backgroundColor: 'green',
-      },
-    ],
-  };
+// дадавання запису зросту
+const handleAddGrowthRecord = async () => {
+  try {
+    const newRecord = { ...newGrowthRecord, pet: selectedPetForChart };
+    const docRef = await addDoc(collection(db, 'growthData'), newRecord);
+    setGrowthData([...growthData, { id: docRef.id, ...newRecord }]);
+    setNewGrowthRecord({ date: new Date(), weight: '', height: '' });
+  } catch (error) {
+    console.error('Помилка при додаванні даних зросту:', error);
+  }
+};
 
   return (
     <div className="container history-container bgPet">
@@ -241,7 +298,8 @@ const History = () => {
             required
           />
         </div>
-        <div className="mb-3"><label className="form-label">Оберіть улюбленця</label>
+        <div className="mb-3">
+          <label className="form-label">Оберіть улюбленця</label>
           <select
             value={selectedPet}
             onChange={(e) => setSelectedPet(e.target.value)}
@@ -250,17 +308,19 @@ const History = () => {
           >
             <option value="">Оберіть улюбленця</option>
             {pets.map((pet) => (
-              <option key={pet.id} value={pet.name}>
+              <option key={pet.id} value={pet.id}>
                 {pet.name}
               </option>
             ))}
           </select>
         </div>
-        <button type="submit" className="btn btn-outline-success">Створити запис</button>
+        <button type="submit" className="btn btn-outline-success">
+          Створити запис
+        </button>
       </form>
 
       <h3 className="mt-4">Історія записів</h3>
-      <table className="table table-bordered mt-2">
+      <table className="table table-success table-striped mt-2">
         <thead>
           <tr>
             <th>Дата та час</th>
@@ -271,43 +331,25 @@ const History = () => {
           </tr>
         </thead>
         <tbody>
-          {appointments.map((app) => (
-            <tr
-              key={app.id}
-              className={`table-${
-                app.type === 'vet'
-                  ? 'success'
-                  : app.type === 'kynologist'
-                  ? 'warning'
-                  : 'info'
-              }`}
-            >
-              <td>{new Date(app.dateTime).toLocaleString('uk-UA')}</td>
-              <td>{specialistTypeTranslations[app.type]}</td>
-              <td>
-                {allSpecialists.find((spec) => spec.id === app.specialist)?.name ||
-                  'Не знайдено'}
-              </td>
-              <td>{app.pet}</td>
-              <td>
-                <button
-                  onClick={() =>
-                    deleteDoc(doc(db, 'appointments', app.id)).then(() =>
-                      setAppointments(
-                        appointments.filter((a) => a.id !== app.id)
-                      )
-                    )
-                  }
-                  className="btn"
-                >
-                  <FontAwesomeIcon
-                    icon={faTrash}
-                    style={{ color: '#f40b0b' }}
-                  />
-                </button>
-              </td>
-            </tr>
-          ))}
+          {appointments.map((app) => {
+            const specialist = allSpecialists.find((spec) => spec.id === app.specialist);
+            return (
+              <tr key={app.id} className={`table-${specialist ? specialist.type : 'default'}`}>
+                <td>{new Date(app.dateTime).toLocaleString('uk-UA')}</td>
+                <td>{specialistTypeTranslations[app.specialistType]}</td>
+                <td>{specialist ? specialist.name : 'Не знайдено'}</td>
+                <td>{pets.find(pet => pet.id === app.pet)?.name}</td>
+                <td>
+                  <button
+                    onClick={() => handleDeleteAppointment(app.id)}
+                    className="btn"
+                  >
+                    <FontAwesomeIcon icon={faTrash} style={{ color: '#f40b0b' }} />
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
 
@@ -320,46 +362,12 @@ const History = () => {
         >
           <option value="">Оберіть улюбленця для графіка</option>
           {pets.map((pet) => (
-            <option key={pet.id} value={pet.name}>
+            <option key={pet.id} value={pet.id}>
               {pet.name}
             </option>
           ))}
         </select>
         <Line data={growthChartData} />
-      </div>
-      <div className="mt-3">
-        <h4>Додати дані росту та ваги</h4>
-        <DatePicker
-          selected={newGrowthRecord.date}
-          onChange={(date) => setNewGrowthRecord({ ...newGrowthRecord, date })}
-          className="form-control mb-2"
-          dateFormat="dd/MM/yyyy"
-          locale="uk"
-        />
-        <input
-          type="number"
-          placeholder="Вага (кг)"
-          value={newGrowthRecord.weight}
-          onChange={(e) =>
-            setNewGrowthRecord({ ...newGrowthRecord, weight: e.target.value })
-          }
-          className="form-control mb-2"
-        />
-        <input
-          type="number"
-          placeholder="Зріст (см)"
-          value={newGrowthRecord.height}
-          onChange={(e) =>
-            setNewGrowthRecord({ ...newGrowthRecord, height: e.target.value })
-          }
-          className="form-control mb-2"
-        />
-        <button
-          onClick={handleAddGrowthRecord}
-          className="btn btn-outline-success"
-        >
-          Додати дані
-        </button>
       </div>
     </div>
   );
