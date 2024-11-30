@@ -74,10 +74,7 @@ function Services() {
                    <li className="breadcrumb-item active" aria-current="page">Послуги</li>
                </ol>
            </nav>
-
-          {/* Карточки послуг */}
                <div className="row row-cols-1 row-cols-md-3 g-4 mt-4">
-                {/* Ветеринарія */}
                    <div className="col">
                       <div className="card h-100 cardOne">
                       <h5 className="poppins-semi bold fw-medium text-start ms-2 mt-2 text-warning logoOD">
@@ -90,8 +87,6 @@ function Services() {
                                </div>
                                </div>
                       </div>
-
-                            {/* Кінологічний центр */}
                 <div className="col">
                      <div className="card h-100 cardTwo">
                      <h5 className="poppins-semibold mt-2 ms-2 fw-medium text-warning logoOD">
@@ -105,8 +100,6 @@ function Services() {
                    </div>
                    </div>
                </div>
-
-          {/* Грумінг */}
         <div className="col">
               <div className="card h-100 cardThree">
               <h5 className="poppins-semibold fw-medium ms-2 mt-2 text-warning logoOD">
@@ -120,7 +113,6 @@ function Services() {
          </div>
      </div>
 </div>
-           {/* Блок часто задаваних питань (FAQ) */}
            <div className="faq-container mt-5">
             <h2 className="faq-title">Часті запитання</h2>
             <div className="faq-list">
