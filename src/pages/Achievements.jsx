@@ -89,7 +89,6 @@ const Achievements = () => {
     <div className='bgPet'>
       <h2 className="text-center mt-3">Досягнення</h2>
 
-      {/* Список досягнень */}
       <div className="d-flex flex-wrap justify-content-start mt-4">
         {achievements.map((achievement) => (
           <div key={achievement.id} className="card mb-3 me-3 shadow" style={{ width: '18rem' }}>
@@ -97,7 +96,7 @@ const Achievements = () => {
               <img
                 src={achievement.image}
                 alt="Досягнення"
-                className="card-img-top"
+                className="card-img"
                 style={{ maxHeight: '200px', objectFit: 'cover' }}
               />
             )}
@@ -105,16 +104,16 @@ const Achievements = () => {
               <h5 className="card-title text-success">{achievement.title}</h5>
               <p><strong>Опис:</strong> {achievement.description}</p>
               <p><strong>Дата:</strong> {achievement.date}</p>
-              <button className="btn btn-danger mt-2"
+              <button className="btn btn-light rounded-circle p-2 mt-2"
                 onClick={() => handleDelete(achievement.id)}
               >
-                <FontAwesomeIcon icon={faTrash} />
+                <FontAwesomeIcon icon={faTrash} style={{color: "#e83f21",}} />
               </button>
             </div>
           </div>
         ))}
       </div>
-      <button className="btn btn-primary mt-4" onClick={() => setFormVisible(!formVisible)}>
+      <button className="btn btn-primary my-4" onClick={() => setFormVisible(!formVisible)}>
         <FontAwesomeIcon icon={faPlus} /> Додати досягнення
       </button>
       {formVisible && (

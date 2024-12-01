@@ -195,7 +195,7 @@ const Profile = () => {
                 <p><strong>Прізвище:</strong> {surname}</p>
                 <p><strong>Телефон:</strong> {phone}</p>
                 <p><strong>Email:</strong> {email}</p>
-                <p><strong>Нікнейм:</strong> {nickname}</p>
+                <p><strong>Нік:</strong> {nickname}</p>
                 <p><strong>Про себе:</strong> {about || 'Немає інформації'}</p>
                 <p><strong>Вік:</strong> {age} років</p>
               </div>

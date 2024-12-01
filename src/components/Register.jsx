@@ -114,7 +114,7 @@ const Register = () => {
         <div className="container d-flex justify-content-center align-items-center vh-100">
             <div className="card p-4 shadow-sm" style={{ width: '100%', maxWidth: '400px' }}>
                 <div className='d-flex'>
-                    <button className='me-1' style={ButtonBack} onClick={() => navigate('/Login')}>
+                    <button className='me-1 bg-transparent' style={ButtonBack} onClick={() => navigate('/Login')}>
                         <FontAwesomeIcon icon={faChevronUp} rotation={270} />
                     </button>
                     <h2 className="ps-5 mb-4">Реєстрація</h2>
@@ -191,7 +191,7 @@ const Register = () => {
                         {passwordError && <p className="text-danger">{passwordError}</p>}
                     </div>
                     <div className="mb-3">
-                        <label className="form-label">Нікнейм</label>
+                        <label className="form-label">Нік</label>
                         <input
                             type="text"
                             value={nickname}
@@ -213,7 +213,6 @@ const ButtonBack = {
     width: '40px',
     height: '40px',
     borderRadius: '50%',
-    backgroundColor: 'transparent',
 };
 
 export default Register;

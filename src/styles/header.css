@@ -34,21 +34,19 @@
   border: 2px solid balck;
   border-radius: 50%;
 }
-/* Загальний стиль для меню */
+
 .offcanvas.menuBox {
   width: 20% !important;
   background-color: rgb(225, 248, 231); 
   color: rgb(13, 13, 13); 
 }
 
-/* Стиль заголовка меню */
 .offcanvas-title {
   font-size: 1.5rem;
   font-weight: bold;
   color: rgb(7, 133, 80); 
 }
 
-/* Стиль лінків меню */
 .menu-link {
   display: block;
   padding: 10px 15px;
@@ -63,9 +61,8 @@
   border: 1px solid black !important;
 }
 
-/* Hover ефект для лінків */
 .menu-link:hover {
-  background-color: #078550; 
+  background-color: rgb(7, 133, 80); 
   border-radius: 35px;
   color: rgb(244, 153, 17) !important; 
 }
@@ -87,7 +84,7 @@
   border: 2px solid rgb(7, 133, 80); 
   border-radius: 25px; 
   font-size: 16px;
-  color: #333; 
+  color: rgb(51, 51, 51); 
   outline: none;
   transition: border-color 0.3s ease; 
 }
@@ -98,9 +95,11 @@
 }
 .notifications-dropdown {
   top: 40px; 
+  max-width: 400px;
+  overflow-x: auto;
   right: 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: white;
+  border: 1px solid rgb(204, 204, 204);
   border-radius: 5px;
   padding: 10px;
   list-style: none;
