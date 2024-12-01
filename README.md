@@ -59,7 +59,7 @@
 Для тестування додатку можна скористатися наступними обліковими даними:
 
 - Логін (Email): oleksandr.petrenko@example.com  
-- Пароль: StronhPassword456!
+- Пароль: StrongPassword456!
 
 ---
 
