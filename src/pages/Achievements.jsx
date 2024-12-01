@@ -63,11 +63,11 @@ const Achievements = () => {
         return;
       }
 
-      const docRef = await addDoc(achievementsCollection, { ...newAchievement, userId }); // Додаємо userId
-      setAchievements([...achievements, { ...newAchievement, id: docRef.id }]); // Оновлення стану
-      setFormVisible(false); // Приховуємо форму після додавання
-      setNewAchievement({ title: '', description: '', date: '', image: null }); // Скидаємо поля форми
-      setErrorMessage(''); // Очищуємо повідомлення про помилку
+      const docRef = await addDoc(achievementsCollection, { ...newAchievement, userId }); 
+      setAchievements([...achievements, { ...newAchievement, id: docRef.id }]); 
+      setFormVisible(false); 
+      setNewAchievement({ title: '', description: '', date: '', image: null }); 
+      setErrorMessage(''); 
     } catch (error) {
       console.error('Помилка при збереженні досягнення:', error);
     }
@@ -76,8 +76,8 @@ const Achievements = () => {
   // Обробник видалення досягнення
   const handleDelete = async (id) => {
     try {
-      await deleteDoc(doc(db, 'achievements', id)); // Видалення документа з Firestore
-      setAchievements(achievements.filter((achievement) => achievement.id !== id)); // Оновлення стану
+      await deleteDoc(doc(db, 'achievements', id)); 
+      setAchievements(achievements.filter((achievement) => achievement.id !== id)); 
     } catch (error) {
       console.error('Помилка при видаленні досягнення:', error);
     }
@@ -114,13 +114,9 @@ const Achievements = () => {
           </div>
         ))}
       </div>
-
-      {/* Кнопка для відкриття форми */}
       <button className="btn btn-primary mt-4" onClick={() => setFormVisible(!formVisible)}>
         <FontAwesomeIcon icon={faPlus} /> Додати досягнення
       </button>
-
-      {/* Форма додавання досягнення */}
       {formVisible && (
         <form onSubmit={handleSubmit} className="mt-4 p-4 border rounded shadow-sm">
           {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
@@ -154,7 +150,7 @@ const Achievements = () => {
               value={newAchievement.date}
               onChange={handleInputChange}
               className="form-control"
-              max={todayDate} // Обмеження дати до сьогоднішнього дня
+              max={todayDate} 
               required
             />
           </div>

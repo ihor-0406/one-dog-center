@@ -38,7 +38,6 @@
 
 }
 
-/* Стилі для FAQ */
 .faq-container {
     margin: 3rem auto;
     padding: 20px;
@@ -55,7 +54,7 @@
 .faq-title {
     text-align: center;
     font-size: 2rem;
-    color: rgb(7, 133, 80); /* Зелений колір для заголовка FAQ */
+    color: rgb(7, 133, 80); 
     margin-bottom: 1.5rem;
     font-weight: bold;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
@@ -68,25 +67,25 @@
 
 .faq-item {
     margin-bottom: 1rem;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid rgb(221, 221, 221);
     padding-bottom: 1rem;
 }
 
 .faq-question {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #444;
+    color: rgb(85, 85, 85);
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
 .faq-question:hover {
-    color: rgb(7, 133, 80); /* Зелений колір при наведенні на питання */
+    color: rgb(7, 133, 80); 
 }
 
 .faq-answer {
     margin-top: 0.5rem;
     font-size: 1rem;
     line-height: 1.5;
-    color: #202020;
+    color: rgb(32, 32, 32);
 }

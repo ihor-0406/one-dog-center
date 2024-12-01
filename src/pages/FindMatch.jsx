@@ -22,7 +22,7 @@ const FindMatch = () => {
   const [currentMatchIndex, setCurrentMatchIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isCardLoading, setIsCardLoading] = useState(false);
-  const [userName, setUserName] = useState(''); // Ім'я користувача
+  const [userName, setUserName] = useState(''); 
 
   const userId = auth.currentUser?.uid;
 

@@ -10,10 +10,6 @@ import "swiper/css/navigation";
 import { Navigation, Pagination } from "swiper/modules";
 import vets from "../data/vets.json";
 
-
-
-
-
 const cynology=()=>{
 
     useEffect(() => {
@@ -71,7 +67,6 @@ const cynology=()=>{
       </div>
       </div>
       <div>
-         {/* Первый блок: текст слева, изображение справа */}
       <div className="veterinary-block  mt-4">
         <div className="veterinary-text ">
           <h2>Комплексна підготовка та дресирування</h2>
@@ -83,8 +78,6 @@ const cynology=()=>{
           <img src={cyn1} alt="veterinary Image" width={'100%'} height={'80%'} />
         </div>
       </div>
-
-      {/* Второй блок: изображение слева, текст справа */}
       <div className="veterinary-block reverse">
         <div className="veterinary-image">
         <img src={cyn2} alt="veterinary Image" width={'100%'} height={'80%'} />
@@ -96,8 +89,6 @@ const cynology=()=>{
           </p>
         </div>
       </div>
-
-      {/* Третий блок: текст слева, изображение справа */}
       <div className="veterinary-block">
         <div className="veterinary-text">
           <h2>Терапевтична та корекційна робота</h2>
@@ -119,7 +110,6 @@ const cynology=()=>{
           </p>
         </div>
         <div className="row row-cols-1 row-cols-md-3 g-4">
-          {/* Free Plan */}
           <div className="col">
             <div className="card pricing-card h-100">
               <div className="card-header text-center text-uppercase bg-light">
@@ -135,7 +125,6 @@ const cynology=()=>{
               </div>
             </div>
           </div>
-          {/* Pro Plan */}
           <div className="col">
             <div className="card pricing-card h-100">
               <div className="card-header text-center text-uppercase bg-light">
@@ -151,7 +140,6 @@ const cynology=()=>{
               </div>
             </div>
           </div>
-          {/* Enterprise Plan */}
           <div className="col">
             <div className="card pricing-card h-100">
               <div className="card-header text-center text-uppercase bg-light">
@@ -168,8 +156,6 @@ const cynology=()=>{
             </div>
           </div>
         </div>
-
-        {/* Таблица сравнения */}
         <div className="comparison-table mt-5">
           <h3 className="text-center mb-4">Порівняння тарифів</h3>
           <table className="table table-hover">

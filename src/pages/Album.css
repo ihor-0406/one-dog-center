@@ -6,7 +6,7 @@
 
 .album-title {
   text-align: center;
-  color: #007bff;
+  color: rgb(0, 123, 255);
   font-size: 2rem;
   margin-bottom: 20px;
 }
@@ -18,7 +18,7 @@
 }
 
 .pet-photos-section {
-  background: #f8f9fa;
+  background: white;
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -51,7 +51,7 @@
 }
 
 .add-photo-form {
-  background: #ffffff;
+  background: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -92,7 +92,7 @@
 .loading-spinner p {
   margin-top: 10px;
   font-size: 1.2rem;
-  color: #007bff;
+  color: rgb(0, 123, 255);
 }
 .photo-viewer-controls {
   position: absolute;
@@ -105,7 +105,7 @@
 .delete-photo-button,
 .close-photo-button {
   background: rgba(255, 255, 255, 0.8);
-  color: #333;
+  color: rgb(51, 51, 51);
   border: none;
   padding: 8px;
   width: 50px;

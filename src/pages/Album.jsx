@@ -10,7 +10,7 @@ const PhotoAlbum = () => {
   const [pets, setPets] = useState([]);
   const [images, setImages] = useState({});
   const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedImagePetName, setSelectedImagePetName] = useState(null); // Для видалення фото
+  const [selectedImagePetName, setSelectedImagePetName] = useState(null); 
   const [formVisible, setFormVisible] = useState(false);
   const [newPhoto, setNewPhoto] = useState({ petName: '', image: null });
   const [serverPhotos, setServerPhotos] = useState({});

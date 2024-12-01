@@ -10,10 +10,6 @@ import "swiper/css/navigation";
 import { Navigation, Pagination } from "swiper/modules";
 import vets from "../data/vets.json";
 
-
-
-
-
 const grooming=()=>{
 
     useEffect(() => {
@@ -31,9 +27,9 @@ const grooming=()=>{
     const handleProfileRedirect = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        navigate("/profile/history"); // Если пользователь авторизован
+        navigate("/profile/history"); 
       } else {
-        navigate("/login"); // Если пользователь не авторизован
+        navigate("/login"); 
       }
     });
   };
@@ -71,7 +67,6 @@ const grooming=()=>{
       </div>
       </div>
       <div>
-         {/* Первый блок: текст слева, изображение справа */}
       <div className="veterinary-block  mt-4">
         <div className="veterinary-text ">
           <h2>Комплексний догляд та стрижка</h2>
@@ -83,8 +78,6 @@ const grooming=()=>{
           <img src={groom1} alt="veterinary Image" width={'100%'} height={'80%'} />
         </div>
       </div>
-
-      {/* Второй блок: изображение слева, текст справа */}
       <div className="veterinary-block reverse">
         <div className="veterinary-image">
         <img src={groom2} alt="veterinary Image" width={'100%'} height={'80%'} />
@@ -96,8 +89,6 @@ const grooming=()=>{
           </p>
         </div>
       </div>
-
-      {/* Третий блок: текст слева, изображение справа */}
       <div className="veterinary-block">
         <div className="veterinary-text">
           <h2>Догляд за лапами та здоров’ям шкіри</h2>
@@ -119,7 +110,6 @@ const grooming=()=>{
     </p>
   </div>
   <div className="row row-cols-1 row-cols-md-3 g-4">
-    {/* Basic Plan */}
     <div className="col">
       <div className="card pricing-card h-100">
         <div className="card-header text-center text-uppercase bg-light">
@@ -135,7 +125,6 @@ const grooming=()=>{
         </div>
       </div>
     </div>
-    {/* Standard Plan */}
     <div className="col">
       <div className="card pricing-card h-100">
         <div className="card-header text-center text-uppercase bg-light">
@@ -151,7 +140,6 @@ const grooming=()=>{
         </div>
       </div>
     </div>
-    {/* Premium Plan */}
     <div className="col">
       <div className="card pricing-card h-100">
         <div className="card-header text-center text-uppercase bg-light">
@@ -168,8 +156,6 @@ const grooming=()=>{
       </div>
     </div>
   </div>
-
-  {/* Таблиця порівняння */}
   <div className="comparison-table mt-5">
     <h3 className="text-center mb-4">Порівняння тарифів</h3>
     <table className="table table-hover">

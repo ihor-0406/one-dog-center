@@ -6,15 +6,14 @@ import { signInWithEmailAndPassword, signOut, setPersistence, browserSessionPers
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [rememberMe, setRememberMe] = useState(false); // Состояние для чекбокса "Запомнить меня"
+    const [rememberMe, setRememberMe] = useState(false); 
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Проверка токена при загрузке компонента
         const token = localStorage.getItem('userToken');
         if (token) {
-            navigate('/'); // Перенаправление на главную страницу, если токен уже существует
+            navigate('/'); 
         }
     }, [navigate]);
 
@@ -23,11 +22,9 @@ const Login = () => {
         setError('');
 
         try {
-            // Установка персистентности сессии в зависимости от состояния чекбокса
             const persistenceType = rememberMe ? browserLocalPersistence : browserSessionPersistence;
             await setPersistence(auth, persistenceType);
 
-            // Вход пользователя
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
@@ -35,10 +32,10 @@ const Login = () => {
 
             if (rememberMe) {
                 const token = await user.getIdToken();
-                localStorage.setItem('userToken', token); // Сохраняем токен в localStorage
+                localStorage.setItem('userToken', token); 
             }
 
-            navigate('/'); // Перенаправление на главную страницу после успешного входа
+            navigate('/'); 
         } catch (error) {
             setError('Помилка входу. Перевірте введені дані.');
             console.error('Помилка входу:', error);
@@ -47,15 +44,13 @@ const Login = () => {
 
     const handleLogout = async () => {
         try {
-            // Выходим из Firebase Auth и очищаем сессию
             await signOut(auth);
-            localStorage.removeItem('userToken'); // Удаляем токен из localStorage
-            navigate('/login'); // Перенаправление на страницу входа
+            localStorage.removeItem('userToken'); 
+            navigate('/login'); 
         } catch (error) {
             console.error('Ошибка при выходе из системы:', error);
         }
     };
-
     return (
         <div className="container d-flex justify-content-center align-items-center vh-100">
             <div className="card p-4 shadow-sm" style={{ maxWidth: '400px', width: '100%' }}>

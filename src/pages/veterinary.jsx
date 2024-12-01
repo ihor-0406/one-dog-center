@@ -12,7 +12,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Pagination } from "swiper/modules";
 import vets from "../data/vets.json";
-import { FaStethoscope, FaVial, FaSyringe, FaUserMd, FaTooth } from "react-icons/fa"; // Импорт иконок
+import { FaStethoscope, FaVial, FaSyringe, FaUserMd, FaTooth } from "react-icons/fa"; 
 
 const servicesList = [
   {
@@ -104,15 +104,15 @@ const Veterinary = () => {
   const handleProfileRedirect = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        navigate("/profile/history"); // Если пользователь авторизован
+        navigate("/profile/history"); 
       } else {
-        navigate("/login"); // Если пользователь не авторизован
+        navigate("/login"); 
       }
     });
   };
 
   const handleCardClick = (id) => {
-    setExpandedCard((prev) => (prev === id ? null : id)); // Открытие/закрытие карточки
+    setExpandedCard((prev) => (prev === id ? null : id)); 
   };
   const toggleTable = () => {
     setIsVisible(!isVisible);
@@ -161,7 +161,6 @@ const Veterinary = () => {
       </div>
       </div>
       <div>
-         {/* Первый блок: текст слева, изображение справа */}
       <div className="veterinary-block mt-4">
         <div className="veterinary-text">
           <h2>Комплексний підхід до здоров'я</h2>
@@ -176,8 +175,6 @@ const Veterinary = () => {
           <img src={vet1} alt="veterinary Image" width={'100%'} height={'80%'} />
         </div>
       </div>
-
-      {/* Второй блок: изображение слева, текст справа */}
       <div className="veterinary-block reverse">
         <div className="veterinary-image">
         <img src={vet2} alt="veterinary Image" width={'100%'} height={'80%'} />
@@ -191,8 +188,6 @@ const Veterinary = () => {
           </p>
         </div>
       </div>
-
-      {/* Третий блок: текст слева, изображение справа */}
       <div className="veterinary-block">
         <div className="veterinary-text">
           <h2>Хірургія та реабілітація</h2>
@@ -273,8 +268,6 @@ const Veterinary = () => {
         </div>
       )}
       </div>
-
-      {/* Блок с дополнительным пояснением */}
       <div className="pricing-info mt-5">
         <h2 className="pricing-info-header text-center">Чому обрати нас?</h2>
         <p className="pricing-info-text text-center">

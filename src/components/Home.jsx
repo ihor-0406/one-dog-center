@@ -33,7 +33,7 @@ function Home() {
 
   // таймер
   const updateTimer = () => {
-    const targetDate = new Date(new Date().getFullYear(), 11, 23, 0, 0, 0); // 23 декабря текущего года
+    const targetDate = new Date(new Date().getFullYear(), 11, 23, 0, 0, 0); // 23.12.24
     const now = new Date();
     const difference = targetDate - now;
 
@@ -168,49 +168,53 @@ const descriptions = {
     const [error, setError] = useState(null);
           
     useEffect(() => {
-     const fetchDogBreeds = async () => {
-         try {
-           const response = await fetch("https://dog.ceo/api/breeds/list/all");
-           const breedData = await response.json();
-           const allBreeds = Object.keys(breedData.message);
-          
-           const filteredBreeds = allBreeds.filter((breed) =>
-           descriptions.hasOwnProperty(breed)
-                  );
-          
-                  const dogBreeds = await Promise.all(
-                    filteredBreeds.map(async (breed) => {
-                      const imageResponse = await fetch(
-                        `https://dog.ceo/api/breed/${breed}/images/random`
-                      );
-                      const imageData = await imageResponse.json();
-          
-                      return {
-                        name: breed,
-                        description: descriptions[breed],
-                        image: imageData.message,
-                      };
-                    })
-                  );
-          
-                  setDogBreedsWithImages(dogBreeds);
-                  setLoading(false);
-                } catch (error) {
-                  setError("Помилка при завантаженні даних про собак.");
-                  setLoading(false);
-                }
+      const fetchDogBreeds = async () => {
+        try {
+          const response = await fetch("https://dog.ceo/api/breeds/list/all");
+          const breedData = await response.json();
+          const allBreeds = Object.keys(breedData.message);
+  
+          const filteredBreeds = allBreeds.filter((breed) =>
+            descriptions.hasOwnProperty(breed)
+          );
+  
+          const dogBreeds = await Promise.all(
+            filteredBreeds.map(async (breed) => {
+              const imageResponse = await fetch(
+                `https://dog.ceo/api/breed/${breed}/images/random`
+              );
+              const imageData = await imageResponse.json();
+  
+              return {
+                name: breed,
+                description: descriptions[breed],
+                image: imageData.message,
               };
-          
-              fetchDogBreeds();
-            }, []);
-          
-            if (loading) {
-              return <div>Завантаження...</div>;
-            }
-          
-            if (error) {
-              return <div>{error}</div>;
-            }
+            })
+          );
+  
+          setDogBreedsWithImages(dogBreeds);
+          setLoading(false);
+        } catch (error) {
+          setError("Помилка при завантаженні даних про собак.");
+          setLoading(false);
+        }
+      };
+  
+      fetchDogBreeds();
+    }, []);
+  
+    if (loading) {
+      return (
+        <div className="loading-container">
+          <div className="spinner-border text-success" role="status"></div>
+        </div>
+      );
+    }
+  
+    if (error) {
+      return <div>{error}</div>;
+    }
             const questionsAndAnswers = [
                 {
                   question: "Скільки разів на день потрібно гуляти з собакою?",

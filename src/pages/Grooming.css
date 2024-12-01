@@ -1,8 +1,8 @@
 .doctors-card-img {
-    width: 250px; /* Ширина зображення */
-    height: 250px; /* Висота зображення */
+    width: 250px; 
+    height: 250px; 
     object-fit: cover; 
     object-position: top ;
-    border-radius: 50%; /* Робить зображення круглим */
+    border-radius: 50%; 
   }
   

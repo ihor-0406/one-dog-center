@@ -63,6 +63,21 @@ const Contacts = () => {
                             вул. Київська, 10, м. Київ, Україна
                         </li>
                     </ul>
+                    <div className="row mt-5">
+                    <div className="col-md-6">
+                    <h4 className="mb-4 text-primary">Кінологічний центр</h4>
+                    <p> <FontAwesomeIcon icon={faMapMarkerAlt} className="me-2 text-primary" /> вул. Прикладна, 123, Київ, Україна</p>
+                    <p><FontAwesomeIcon icon={faPhone} className="me-2 text-primary" /><a href="tel.+380987654321"  className="text-decoration-none text-dark">+38 (098) 765-43-21</a> </p>
+                    <p> <FontAwesomeIcon icon={faEnvelope} className="me-2 text-primary" /><a href="mailto:kynology@onedog.ua"  className="text-decoration-none text-dark">kynology@onedog.ua</a></p>
+                </div>
+                <div className="col-md-6">
+                    <h4 className="mb-4 text-primary">Години роботи:</h4>
+                    <p>Понеділок - П'ятниця: 9:00 - 18:00</p>
+                    <p>Субота: 10:00 - 15:00</p>
+                    <p>Неділя: вихідний</p>
+                </div>
+                
+            </div>
                     <div className="social-icons mt-4">
                         <h5 className="mb-3">Ми в соціальних мережах:</h5>
                         <a href="https://www.facebook.com" className="me-3 text-primary" target="_blank" rel="noopener noreferrer">
@@ -76,13 +91,13 @@ const Contacts = () => {
                         </a>
                     </div>
                 </div>
-                <div className="col-md-6 rounded-4 mt-sm-2 alertBlock">
+                <div className="col-md-6 rounded-4 mt-3 alertBlock">
                     <h4 className="mb-3">Напишіть нам</h4>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
-                            <label htmlFor="name" className="form-label">Ім'я</label><input
-                                type="text"
-                                className="form-control"
+                            <label htmlFor="name" className="form-label">Ім'я</label>
+                            <input
+                                type="text"className="form-control"
                                 id="name"
                                 name="name"
                                 value={formData.name}
