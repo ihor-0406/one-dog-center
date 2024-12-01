@@ -33,7 +33,6 @@
 - UI-бібліотека: Bootstrap.
 - Backend: Firebase Firestore.
 - Аутентифікація: Firebase Authentication.
-- Сховище зображень: Firebase Storage.
 - Додаткові бібліотеки:
   - ![Axios](https://img.icons8.com/ios-filled/25/ffffff/network.png) Axios для роботи з API.
   - ![React Hook Form](https://img.icons8.com/ios-filled/25/ffffff/document.png) React Hook Form для управління формами.
